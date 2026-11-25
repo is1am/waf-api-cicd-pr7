@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: ENU Lab Shop API
+  version: "1.0"
+  description: Учебный REST API для практической работы № 7 (WAF и тестирование API).
+servers:
+  - url: http://127.0.0.1:5000
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Credentials:
+      type: object
+      additionalProperties: false
+      required: [username, password]
+      properties:
+        username: { type: string, pattern: "^[a-z0-9_]{3,32}$" }
+        password: { type: string, minLength: 8, maxLength: 128 }
+    Registration:
+      type: object
+      additionalProperties: false          # API3: лишние поля (role, is_admin, balance) запрещены
+      required: [username, password]
+      properties:
+        username: { type: string, pattern: "^[a-z0-9_]{3,32}$" }
+        password: { type: string, minLength: 8, maxLength: 128 }
+        full_name: { type: string, maxLength: 100 }
+        email: { type: string, format: email, maxLength: 100 }
+        phone: { type: string, pattern: "^[+0-9 ()-]{5,20}$" }
+    ProfileUpdate:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        full_name: { type: string, maxLength: 100 }
+        email: { type: string, format: email, maxLength: 100 }
+        phone: { type: string, pattern: "^[+0-9 ()-]{5,20}$" }
+    Profile:
+      type: object
+      properties:
+        id: { type: integer }
+        username: { type: string }
+        full_name: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        card_last4: { type: string }
+        role: { type: string }
+paths:
+  /api/v1/login:
+    post:
+      summary: Вход, выдача JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Credentials" }
+            example: { username: aliya, password: "Aliya#2026" }
+      responses:
+        "200": { description: Токен }
+        "401": { description: Неверные учётные данные }
+  /api/v1/register:
+    post:
+      summary: Регистрация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Registration" }
+            example: { username: newbie, password: "Newbie#2026", full_name: "Новый пользователь" }
+      responses:
+        "201": { description: Создан }
+        "400": { description: Неверные поля запроса }
+        "409": { description: Логин занят }
+  /api/v1/products:
+    get:
+      summary: Поиск товаров
+      parameters:
+        - { name: q, in: query, schema: { type: string, maxLength: 100 }, example: USB }
+      responses:
+        "200": { description: Список товаров }
+  /api/v1/users/{user_id}/profile:
+    parameters:
+      - { name: user_id, in: path, required: true, schema: { type: integer, minimum: 1 }, example: 101 }
+    get:
+      summary: Профиль пользователя (только свой или для администратора)
+      security: [{ bearer: [] }]
+      responses:
+        "200":
+          description: Профиль
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Profile" }
+        "401": { description: Нет токена }
+        "403": { description: Чужой объект }
+    patch:
+      summary: Изменение своего профиля
+      security: [{ bearer: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ProfileUpdate" }
+            example: { phone: "+7 701 111 11 11" }
+      responses:
+        "200": { description: Обновлено }
+        "400": { description: Недопустимые поля }
+        "403": { description: Чужой объект }
+  /api/v1/orders/{order_id}:
+    get:
+      summary: Заказ (только свой или для администратора)
+      security: [{ bearer: [] }]
+      parameters:
+        - { name: order_id, in: path, required: true, schema: { type: integer }, example: 5001 }
+      responses:
+        "200": { description: Заказ }
+        "403": { description: Чужой объект }
+  /api/v1/admin/users:
+    get:
+      summary: Список пользователей (администратор)
+      security: [{ bearer: [] }]
+      responses:
+        "200": { description: Список }
+        "403": { description: Нет прав }

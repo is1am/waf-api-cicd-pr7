@@ -1,0 +1,98 @@
+# GitLab CI: тот же конвейер SAST + SCA + security-тесты API + DAST по OpenAPI.
+# Встроенные анализаторы GitLab (Semgrep-based SAST, Gemnasium, Secret Detection)
+# публикуют отчёты в Security Dashboard / Merge Request widget,
+# а собственные задания *-gate останавливают конвейер при уязвимостях.
+stages: [test, security, dast]
+
+include:
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+
+variables:
+  SAST_EXCLUDED_PATHS: "tests, .venv"
+  PIP_REQUIREMENTS_FILE: requirements.txt
+
+sast:
+  stage: security
+
+dependency_scanning:
+  stage: security
+
+secret_detection:
+  stage: security
+
+security-tests:
+  stage: test
+  image: python:3.12-slim
+  script:
+    - pip install -r requirements.txt -r requirements-dev.txt
+    - pytest -v tests --junitxml=pytest.xml
+  artifacts:
+    when: always
+    reports: { junit: pytest.xml }
+
+semgrep-gate:
+  stage: security
+  image: semgrep/semgrep:latest
+  script:
+    - >
+      semgrep scan --config .semgrep/rules.yml
+      --config p/python --config p/flask --config p/owasp-top-ten --config p/secrets
+      --metrics off --gitlab-sast --output gl-sast-semgrep.json
+      --severity ERROR --error src
+  artifacts:
+    when: always
+    reports: { sast: gl-sast-semgrep.json }
+
+bandit-gate:
+  stage: security
+  image: python:3.12-slim
+  script:
+    - pip install bandit==1.8.6
+    - bandit -r src --severity-level medium --confidence-level medium -f json -o bandit.json || (cat bandit.json; exit 1)
+  artifacts:
+    when: always
+    paths: [bandit.json]
+
+pip-audit-gate:
+  stage: security
+  image: python:3.12-slim
+  script:
+    - pip install pip-audit==2.9.0
+    - pip-audit -r requirements.txt --no-deps --disable-pip -f cyclonedx-json -o sbom.cdx.json || true
+    - pip-audit -r requirements.txt --no-deps --disable-pip --desc on
+  artifacts:
+    when: always
+    paths: [sbom.cdx.json]
+    reports: { cyclonedx: sbom.cdx.json }
+
+trivy-gate:
+  stage: security
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
+  script:
+    - trivy fs --scanners vuln --format template --template "@/contrib/gitlab.tpl" -o gl-dependency-scanning-trivy.json .
+    - trivy fs --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 .
+  artifacts:
+    when: always
+    reports: { dependency_scanning: gl-dependency-scanning-trivy.json }
+
+zap-api-scan:
+  stage: dast
+  image:
+    name: zaproxy/zap-stable
+    entrypoint: [""]
+  needs: [semgrep-gate, bandit-gate, pip-audit-gate, trivy-gate, security-tests]
+  script:
+    - export SHOP_SECRET_KEY=$(python3 -c "import secrets; print(secrets.token_hex(32))")
+    - python3 -m venv /tmp/venv && /tmp/venv/bin/pip install -q -r requirements.txt
+    - nohup /tmp/venv/bin/python -m src.shop.app > app.log 2>&1 &
+    - sleep 5
+    - mkdir -p /zap/wrk && cp openapi.yaml zap-api-rules.tsv /zap/wrk/
+    - zap-api-scan.py -t /zap/wrk/openapi.yaml -f openapi -O http://127.0.0.1:5000 -c zap-api-rules.tsv -r zap-api.html -J zap-api.json -I
+    - cp /zap/wrk/zap-api.* .
+  artifacts:
+    when: always
+    paths: [zap-api.html, zap-api.json]

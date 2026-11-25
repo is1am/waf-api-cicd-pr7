@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.db
+*.sarif
+semgrep.json
+sbom.cdx.json
+waf/logs/
+
+# отчёт с персональными данными — только локально
+report/*.docx
+report/*.pdf
+report/build_report.py
+report/__pycache__/
+report/img/

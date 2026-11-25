@@ -1,0 +1,7 @@
+# Правила ZAP API scan: IGNORE — не учитывать, WARN — предупреждение, FAIL — остановить сборку
+10038	IGNORE	(CSP Header Not Set — API отдаёт JSON, CSP задаётся приложением)
+40012	FAIL	(Cross Site Scripting (Reflected))
+40018	FAIL	(SQL Injection)
+40014	FAIL	(Cross Site Scripting (Persistent))
+90019	FAIL	(Server Side Include)
+90020	FAIL	(Remote OS Command Injection)

@@ -1,0 +1,121 @@
+# Собственные правила SAST для проекта ENU Lab Shop API v1.
+# Дополняют наборы Semgrep Registry (p/python, p/flask, p/owasp-top-ten, p/secrets).
+rules:
+  - id: lab-sqli-string-built-query
+    message: >-
+      SQL-запрос собирается из строк (%-формат, f-строка, конкатенация или .format).
+      Используйте параметризованный запрос: conn.execute("... WHERE x = ?", (value,)).
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A03:2021 - Injection"
+      cwe: "CWE-89: SQL Injection"
+    patterns:
+      - pattern-either:
+          - pattern: $CONN.execute("..." % ...)
+          - pattern: $CONN.execute(f"...")
+          - pattern: $CONN.execute("..." + ...)
+          - pattern: $CONN.execute("...".format(...))
+          - pattern: |
+              $Q = "..." % ...
+              ...
+              $CONN.execute($Q)
+          - pattern: |
+              $Q = f"..."
+              ...
+              $CONN.execute($Q)
+
+  - id: lab-hardcoded-signing-secret
+    message: Секрет подписи токенов задан в исходном коде. Передавайте его через переменную окружения или менеджер секретов.
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A02:2021 - Cryptographic Failures"
+      cwe: "CWE-798: Use of Hard-coded Credentials"
+    pattern-either:
+      - pattern: SECRET_KEY = "..."
+      - pattern: $APP.config["SECRET_KEY"] = "..."
+      - pattern: jwt.encode($P, "...", ...)
+
+  - id: lab-object-lookup-without-owner-check
+    message: >-
+      Объект выбирается из БД по идентификатору из URL, но в функции нет проверки
+      владельца (owner/user_id) — возможна BOLA/IDOR (OWASP API1:2023). Добавьте проверку прав доступа.
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A01:2021 - Broken Access Control; API1:2023 - BOLA"
+      cwe: "CWE-639: Authorization Bypass Through User-Controlled Key"
+    patterns:
+      - pattern-inside: |
+          @$APP.$METHOD("$ROUTE")
+          def $F(..., $ID, ...):
+            ...
+      - metavariable-regex:
+          metavariable: $METHOD
+          regex: ^(get|post|put|patch|delete|route)$
+      - metavariable-regex:
+          metavariable: $ROUTE
+          regex: .*<int:\w+_id>.*
+      - pattern-not-inside: |
+          def $F(...):
+            ...
+            if <... $ID ...>:
+              ...
+            ...
+      # проверка прав после выборки объекта (сравнение владельца из найденной строки)
+      - pattern-not-inside: |
+          def $F(...):
+            ...
+            $ROW = $CONN.execute(...).fetchone()
+            ...
+            if not can_access($ROW[...]):
+              ...
+            ...
+      - pattern: $CONN.execute(...)
+
+  - id: lab-flask-debug-enabled
+    message: Flask запускается в режиме debug — интерактивный отладчик Werkzeug позволяет выполнить код на сервере.
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A05:2021 - Security Misconfiguration"
+      cwe: "CWE-489: Active Debug Code"
+    pattern: $APP.run(..., debug=True, ...)
+
+  - id: lab-traceback-to-client
+    message: Трассировка стека возвращается клиенту — раскрытие внутренней информации.
+    severity: WARNING
+    languages: [python]
+    metadata:
+      owasp: "A05:2021 - Security Misconfiguration"
+      cwe: "CWE-209: Information Exposure Through an Error Message"
+    pattern: jsonify(..., trace=traceback.format_exc(), ...)
+
+  - id: lab-mass-assignment
+    message: >-
+      Поля JSON-запроса переносятся в модель/запрос без явного списка разрешённых полей
+      (фильтрация по столбцам модели, **kwargs, update, setattr) — Mass Assignment
+      (OWASP API3:2023). Перечислите допустимые поля явно (DTO / схема валидации).
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A01:2021 - Broken Access Control; API3:2023 - BOPLA"
+      cwe: "CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes"
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              $DATA = request.get_json(...) or ...
+              ...
+          - pattern-inside: |
+              $DATA = request.get_json(...)
+              ...
+          - pattern-inside: |
+              $DATA = request.json
+              ...
+      - pattern-either:
+          - pattern: "{$K: $V for $K, $V in $DATA.items() if <... $K in $COLUMNS ...>}"
+          - pattern: "{$K: $V for $K, $V in $DATA.items()}"
+          - pattern: $MODEL(**$DATA)
+          - pattern: $OBJ.update($DATA)
+          - pattern: setattr($OBJ, $K, $DATA[$K])

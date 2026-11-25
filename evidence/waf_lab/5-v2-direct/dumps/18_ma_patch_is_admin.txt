@@ -1,0 +1,13 @@
+PATCH /api/v1/users/101/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+Content-Type: application/json
+Content-Length: 64
+
+{"phone": "+7 701 555 01 01", "is_admin": 1, "balance": 9999999}
+
+HTTP/1.1 400 BAD REQUEST
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 49
+
+{"error":"unexpected fields: balance, is_admin"}

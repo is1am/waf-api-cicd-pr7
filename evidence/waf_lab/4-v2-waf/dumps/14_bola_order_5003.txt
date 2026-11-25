@@ -1,0 +1,12 @@
+GET /api/v1/orders/5003 HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+
+
+
+HTTP/1.1 403 FORBIDDEN
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: application/json
+Content-Length: 22
+
+{"error":"forbidden"}

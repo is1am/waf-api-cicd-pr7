@@ -1,0 +1,13 @@
+PATCH /api/v1/users/101/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+Content-Type: application/json
+Content-Length: 46
+
+{"phone":"+7 701 555 01 01","\u0069s_admin":1}
+
+HTTP/1.1 400 BAD REQUEST
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 40
+
+{"error":"unexpected fields: is_admin"}

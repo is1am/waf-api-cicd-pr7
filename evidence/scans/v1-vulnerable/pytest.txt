@@ -1,0 +1,171 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.7.0 -- /opt/pr7venv/bin/python
+rootdir: /tmp/pr7scan-v1-vulnerable
+plugins: platformdirs-4.14.8
+collecting ... collected 16 items
+
+tests/test_api_security.py::test_own_profile_is_available PASSED         [  6%]
+tests/test_api_security.py::test_profile_requires_token PASSED           [ 12%]
+tests/test_api_security.py::test_admin_can_read_any_profile PASSED       [ 18%]
+tests/test_api_security.py::test_regular_registration_works PASSED       [ 25%]
+tests/test_api_security.py::test_own_profile_update_works PASSED         [ 31%]
+tests/test_api_security.py::test_bola_foreign_profile_is_forbidden FAILED [ 37%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[100] FAILED [ 43%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[102] FAILED [ 50%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[103] FAILED [ 56%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[104] FAILED [ 62%]
+tests/test_api_security.py::test_bola_foreign_order_is_forbidden FAILED  [ 68%]
+tests/test_api_security.py::test_bola_foreign_profile_update_is_forbidden FAILED [ 75%]
+tests/test_api_security.py::test_mass_assignment_on_register_is_rejected FAILED [ 81%]
+tests/test_api_security.py::test_mass_assignment_on_profile_update_is_rejected FAILED [ 87%]
+tests/test_api_security.py::test_balance_cannot_be_changed_by_owner FAILED [ 93%]
+tests/test_api_security.py::test_response_does_not_expose_internal_fields FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_bola_foreign_profile_is_forbidden ____________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_bola_foreign_profile_is_forbidden(client):
+        r = client.get(f"/api/v1/users/{TIMUR}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:64: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[100] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 100
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[102] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 102
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[103] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 103
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[104] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 104
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+_____________________ test_bola_foreign_order_is_forbidden _____________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_bola_foreign_order_is_forbidden(client):
+        r = client.get("/api/v1/orders/5002", headers=login(client, "aliya"))   # заказ Тимура
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:76: AssertionError
+________________ test_bola_foreign_profile_update_is_forbidden _________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_bola_foreign_profile_update_is_forbidden(client):
+        r = client.patch(f"/api/v1/users/{TIMUR}/profile", json={"email": "attacker@evil.test"},
+                         headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:82: AssertionError
+_________________ test_mass_assignment_on_register_is_rejected _________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_mass_assignment_on_register_is_rejected(client):
+        r = client.post("/api/v1/register", json={"username": "mallory", "password": "Mallory#2026",
+                                                  "role": "admin", "is_admin": True, "balance": 999999})
+>       assert r.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+tests/test_api_security.py:89: AssertionError
+______________ test_mass_assignment_on_profile_update_is_rejected ______________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_mass_assignment_on_profile_update_is_rejected(client):
+        h = login(client, "aliya")
+        r = client.patch(f"/api/v1/users/{ALIYA}/profile", json={"is_admin": 1, "role": "admin"}, headers=h)
+>       assert r.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:96: AssertionError
+___________________ test_balance_cannot_be_changed_by_owner ____________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_balance_cannot_be_changed_by_owner(client):
+        h = login(client, "aliya")
+        client.patch(f"/api/v1/users/{ALIYA}/profile", json={"balance": 10_000_000}, headers=h)
+>       assert client.get(f"/api/v1/users/{ALIYA}/profile", headers=h).get_json().get("balance", 15000) == 15000
+E       AssertionError: assert 10000000 == 15000
+E        +  where 10000000 = <built-in method get of dict object at 0x75e339481680>('balance', 15000)
+E        +    where <built-in method get of dict object at 0x75e339481680> = {'balance': 10000000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...}.get
+E        +      where {'balance': 10000000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...} = get_json()
+E        +        where get_json = <WrapperTestResponse 258 bytes [200 OK]>.get_json
+E        +          where <WrapperTestResponse 258 bytes [200 OK]> = get('/api/v1/users/101/profile', headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjc1MSwiZXhwIjoxNzk1NjE4NTUxfQ.tdcmN8D2R8gaWXBzJSZD2KKLwSiWKptNZPEp28U-39I'})
+E        +            where get = <FlaskClient <Flask 'src.shop.app'>>.get
+
+tests/test_api_security.py:103: AssertionError
+________________ test_response_does_not_expose_internal_fields _________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_response_does_not_expose_internal_fields(client):
+        r = client.get(f"/api/v1/users/{ALIYA}/profile", headers=login(client, "aliya"))
+        body = r.get_json()
+>       assert "password" not in body and "is_admin" not in body and "iin" not in body
+E       AssertionError: assert ('password' not in {'balance': 15000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...} and 'is_admin' not in {'balance': 15000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...})
+
+tests/test_api_security.py:109: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_api_security.py::test_bola_foreign_profile_is_forbidden - a...
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[100]
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[102]
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[103]
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[104]
+FAILED tests/test_api_security.py::test_bola_foreign_order_is_forbidden - ass...
+FAILED tests/test_api_security.py::test_bola_foreign_profile_update_is_forbidden
+FAILED tests/test_api_security.py::test_mass_assignment_on_register_is_rejected
+FAILED tests/test_api_security.py::test_mass_assignment_on_profile_update_is_rejected
+FAILED tests/test_api_security.py::test_balance_cannot_be_changed_by_owner - ...
+FAILED tests/test_api_security.py::test_response_does_not_expose_internal_fields
+========================= 11 failed, 5 passed in 7.94s =========================

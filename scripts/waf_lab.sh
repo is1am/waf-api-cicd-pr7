@@ -6,6 +6,7 @@
 #   2-naive    — + правило 1001 из методических указаний (deny)
 #   3-custom   — + собственные правила waf/rules/api-custom.conf
 #   4-v2-waf   — исправленное API v2 за WAF с собственными правилами (эшелонированная защита)
+#   5-v2-direct — исправленное API v2 без WAF (только исправление кода)
 # Запуск (WSL, root): bash scripts/waf_lab.sh [этапы...]   результаты → evidence/waf_lab/<этап>/
 set -u
 REPO=$(cd "$(dirname "$0")/.." && pwd)
@@ -53,6 +54,8 @@ for s in $STAGES; do
     1-crs)    start_api /opt/pr7v1; waf_rules "$REPO/waf/stages/crs-only.conf";   stage "$s" http://127.0.0.1 api.local ;;
     2-naive)  start_api /opt/pr7v1; waf_rules "$REPO/waf/stages/naive-1001.conf"; stage "$s" http://127.0.0.1 api.local ;;
     3-custom) start_api /opt/pr7v1; waf_rules "$REPO/waf/rules/api-custom.conf";  stage "$s" http://127.0.0.1 api.local ;;
+    5-v2-direct) checkout v2-fixed /opt/pr7v2; start_api /opt/pr7v2; : > "$AUDIT"
+              stage "$s" http://127.0.0.1:5000 "" ;;
     4-v2-waf) checkout v2-fixed /opt/pr7v2; start_api /opt/pr7v2
               waf_rules "$REPO/waf/rules/api-custom.conf"; stage "$s" http://127.0.0.1 api.local ;;
   esac

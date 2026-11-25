@@ -1,0 +1,47 @@
+<!doctype html><meta charset="utf-8">
+<style>
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#fff}
+.wrap{display:inline-block;padding:22px 26px;width:1480px}
+h3{margin:0 0 16px;font-size:20px;color:#1f2937}
+.row{display:flex;align-items:center;gap:12px}
+.node{border:2px solid;border-radius:12px;padding:12px 14px;font-size:14.5px;color:#0f172a;background:#fff}
+.node b{display:block;font-size:16px;margin-bottom:4px}
+.node span{display:block;font-size:13px;color:#475569;line-height:1.35}
+.cl{border-color:#818cf8;background:#eef2ff;width:220px}
+.waf{border-color:#f59e0b;background:#fffbeb;width:520px}
+.api{border-color:#22c55e;background:#f0fdf4;width:300px}
+.dbn{border-color:#64748b;background:#f1f5f9;width:150px}
+.arrow{font-size:13px;color:#475569;text-align:center;width:90px}
+.arrow i{display:block;font-style:normal;font-size:28px;color:#64748b;line-height:1}
+.inner{display:flex;gap:8px;margin-top:8px}
+.inner div{flex:1;border:1px solid #fbbf24;border-radius:8px;padding:6px 8px;background:#fff;font-size:12.5px;color:#334155}
+.inner div b{font-size:13.5px;margin:0}
+.ph{margin-top:8px;font-size:12.5px;color:#7c2d12}
+.legend{margin-top:16px;display:flex;gap:14px;font-size:13.5px;color:#334155}
+.legend div{border:1px dashed #94a3b8;border-radius:8px;padding:8px 10px;flex:1;background:#f8fafc}
+</style>
+<div class="wrap">
+<h3>Архитектура стенда: клиент → Nginx + ModSecurity v3 (OWASP CRS v4 + правила API) → ENU Lab Shop API v1</h3>
+<div class="row">
+ <div class="node cl"><b>Клиент / атакующий</b><span>scripts/api_attack.py, cURL, OWASP ZAP (OpenAPI)</span><span>aliya, ID=101, JWT</span></div>
+ <div class="arrow"><i>➜</i>HTTP :80<br>Host: api.local</div>
+ <div class="node waf"><b>Nginx 1.24 + ModSecurity-nginx 1.0.3 (libmodsecurity 3.0.12)</b>
+  <span>modsecurity on; modsecurity_rules_file /etc/nginx/modsec/main.conf</span>
+  <div class="inner">
+   <div><b>modsecurity.conf</b><br>SecRuleEngine On<br>JSON body processor<br>аудит: /var/log/modsec_audit.log</div>
+   <div><b>api-custom.conf</b><br>1000 методы REST<br>1001–1009 API1 BOLA<br>1010–1013 API3 MA</div>
+   <div><b>OWASP CRS v4.31</b><br>PL1, anomaly scoring<br>942 SQLi · 941 XSS<br>930 LFI · 932 RCE</div>
+  </div>
+  <div class="ph">фаза 1: заголовки, URI, JWT → фаза 2: тело JSON → 949110 итоговая оценка → 403 / 415 / 429</div>
+ </div>
+ <div class="arrow"><i>➜</i>proxy_pass<br>127.0.0.1:5000</div>
+ <div class="node api"><b>ENU Lab Shop API v1</b><span>Python 3.12, Flask 3.1, PyJWT</span><span>/api/v1/login, /register</span><span>/users/{id}/profile (GET, PATCH)</span><span>/orders/{id}, /admin/users</span></div>
+ <div class="arrow"><i>➜</i></div>
+ <div class="node dbn"><b>SQLite</b><span>users 100–104</span><span>orders 5001–5004</span></div>
+</div>
+<div class="legend">
+ <div><b>Ubuntu 24.04 (WSL 2)</b> — нативная установка по методическим указаниям: apt libnginx-mod-http-modsecurity, git clone coreruleset (scripts/waf_setup.sh)</div>
+ <div><b>CI (GitHub Actions / GitLab CI)</b> — тот же набор правил в образе owasp/modsecurity-crs:nginx (docker-compose.waf.yml), задание waf-regression</div>
+ <div><b>Версии API</b>: v1-vulnerable (BOLA, Mass Assignment) · v2-fixed (проверка владельца, схемы запросов)</div>
+</div>
+</div>

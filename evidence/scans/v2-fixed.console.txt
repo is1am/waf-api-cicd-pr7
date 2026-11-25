@@ -1,0 +1,91 @@
+
+=================== Gitleaks (секреты в истории git) ===================
+
+[90m2:24PM[0m [32mINF[0m [1mUnknown SCM platform. Use --platform to include links in findings.[0m [36mhost=[0m
+[90m2:24PM[0m [32mINF[0m [1m3 commits scanned.[0m
+[90m2:24PM[0m [32mINF[0m [1mscanned ~409969 bytes (409.97 KB) in 138ms[0m
+[90m2:24PM[0m [32mINF[0m [1mno leaks found[0m
+
+=================== SAST: Semgrep ===================
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 0 (0 blocking)
+ • Rules run: 97
+ • Targets scanned: 3
+ • Parsed lines: ~100.0%
+ • Scan was limited to files tracked by git
+ • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+Ran 97 rules on 3 files: 0 findings.
+(need more rules? `semgrep login` for additional free Semgrep Registry rules)
+
+If Semgrep missed a finding, please send us feedback to let us know!
+See https://semgrep.dev/docs/reporting-false-negatives/
+
+=================== SAST: Bandit ===================
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+Files skipped (0):
+
+=================== SCA: pip-audit ===================
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+No known vulnerabilities found
+
+=================== SCA: Trivy ===================
+
+Report Summary
+
+┌──────────────────┬──────┬─────────────────┐
+│      Target      │ Type │ Vulnerabilities │
+├──────────────────┼──────┼─────────────────┤
+│ requirements.txt │ pip  │        0        │
+└──────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+=================== Security regression tests (pytest) ===================
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.7.0 -- /opt/pr7venv/bin/python
+rootdir: /tmp/pr7scan-v2-fixed
+plugins: platformdirs-4.14.8
+collecting ... collected 16 items
+
+tests/test_api_security.py::test_own_profile_is_available PASSED         [  6%]
+tests/test_api_security.py::test_profile_requires_token PASSED           [ 12%]
+tests/test_api_security.py::test_admin_can_read_any_profile PASSED       [ 18%]
+tests/test_api_security.py::test_regular_registration_works PASSED       [ 25%]
+tests/test_api_security.py::test_own_profile_update_works PASSED         [ 31%]
+tests/test_api_security.py::test_bola_foreign_profile_is_forbidden PASSED [ 37%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[100] PASSED [ 43%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[102] PASSED [ 50%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[103] PASSED [ 56%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[104] PASSED [ 62%]
+tests/test_api_security.py::test_bola_foreign_order_is_forbidden PASSED  [ 68%]
+tests/test_api_security.py::test_bola_foreign_profile_update_is_forbidden PASSED [ 75%]
+tests/test_api_security.py::test_mass_assignment_on_register_is_rejected PASSED [ 81%]
+tests/test_api_security.py::test_mass_assignment_on_profile_update_is_rejected PASSED [ 87%]
+tests/test_api_security.py::test_balance_cannot_be_changed_by_owner PASSED [ 93%]
+tests/test_api_security.py::test_response_does_not_expose_internal_fields PASSED [100%]
+
+============================== 16 passed in 7.86s ==============================
+
+=================== ИТОГ (0 — проверка пройдена, иначе сборка остановлена) ===================
+gitleaks   exit=0   PASS
+semgrep    exit=0   PASS
+bandit     exit=0   PASS
+pip_audit  exit=0   PASS
+trivy      exit=0   PASS
+pytest     exit=0   PASS

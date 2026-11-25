@@ -1,0 +1,12 @@
+POST /api/v1/register HTTP/1.1
+Content-Type: application/json
+Content-Length: 137
+
+{"username": "mallory_4a615d", "password": "Mallory#2026", "full_name": "Mallory", "role": "admin", "is_admin": true, "balance": 1000000}
+
+HTTP/1.1 400 BAD REQUEST
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 55
+
+{"error":"unexpected fields: balance, is_admin, role"}

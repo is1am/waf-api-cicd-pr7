@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.7.0 -- /opt/pr7venv/bin/python
+rootdir: /tmp/pr7scan-v2-fixed
+plugins: platformdirs-4.14.8
+collecting ... collected 16 items
+
+tests/test_api_security.py::test_own_profile_is_available PASSED         [  6%]
+tests/test_api_security.py::test_profile_requires_token PASSED           [ 12%]
+tests/test_api_security.py::test_admin_can_read_any_profile PASSED       [ 18%]
+tests/test_api_security.py::test_regular_registration_works PASSED       [ 25%]
+tests/test_api_security.py::test_own_profile_update_works PASSED         [ 31%]
+tests/test_api_security.py::test_bola_foreign_profile_is_forbidden PASSED [ 37%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[100] PASSED [ 43%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[102] PASSED [ 50%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[103] PASSED [ 56%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[104] PASSED [ 62%]
+tests/test_api_security.py::test_bola_foreign_order_is_forbidden PASSED  [ 68%]
+tests/test_api_security.py::test_bola_foreign_profile_update_is_forbidden PASSED [ 75%]
+tests/test_api_security.py::test_mass_assignment_on_register_is_rejected PASSED [ 81%]
+tests/test_api_security.py::test_mass_assignment_on_profile_update_is_rejected PASSED [ 87%]
+tests/test_api_security.py::test_balance_cannot_be_changed_by_owner PASSED [ 93%]
+tests/test_api_security.py::test_response_does_not_expose_internal_fields PASSED [100%]
+
+============================== 16 passed in 7.86s ==============================

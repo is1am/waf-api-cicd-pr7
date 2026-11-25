@@ -1,0 +1,124 @@
+---CiQDbikL---A--
+[25/Nov/2026:19:39:17 +0500] 179561755782.181751 127.0.0.1 43936 127.0.0.1 80
+---CiQDbikL---B--
+GET /api/v1/users/102/profile HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNzU1NywiZXhwIjoxNzk1NjE5MzU3fQ.rNFt-Si5gTHJpgDAcJAiJriaOwF7lIYiZVjzqTSs5BA
+User-Agent: curl/8.5.0
+Accept: */*
+
+---CiQDbikL---D--
+
+---CiQDbikL---F--
+HTTP/1.1 403
+
+---CiQDbikL---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/102/profile' ) [file "/etc/nginx/modsec/custom/api-custom.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561755782.181751"] [ref "o0,25v4,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/nginx/modsec/custom/api-custom.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=102 subject=101 uri=/api/v1/users/102/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561755782.181751"] [ref ""]
+
+---CiQDbikL---I--
+
+---CiQDbikL---J--
+
+---CiQDbikL---Z--
+
+---3iIbULOg---A--
+[25/Nov/2026:19:39:17 +0500] 179561755792.600826 127.0.0.1 43948 127.0.0.1 80
+---3iIbULOg---B--
+GET /api/v1/users/101/profile HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNzU1NywiZXhwIjoxNzk1NjE5MzU3fQ.rNFt-Si5gTHJpgDAcJAiJriaOwF7lIYiZVjzqTSs5BA
+User-Agent: curl/8.5.0
+Accept: */*
+
+---3iIbULOg---D--
+
+---3iIbULOg---F--
+HTTP/1.1 200
+Server: nginx/1.24.0 (Ubuntu)
+Date: Wed, 25 Nov 2026 14:39:17 GMT
+Content-Length: 255
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Connection: keep-alive
+Cache-Control: no-store
+Cross-Origin-Resource-Policy: same-origin
+X-Frame-Options: DENY
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+Referrer-Policy: no-referrer
+
+---3iIbULOg---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/nginx/modsec/custom/api-custom.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561755792.600826"] [ref "o0,25v4,25"]
+
+---3iIbULOg---I--
+
+---3iIbULOg---J--
+
+---3iIbULOg---Z--
+
+---gWvXE4UL---A--
+[25/Nov/2026:19:39:17 +0500] 179561755779.008053 127.0.0.1 43956 127.0.0.1 80
+---gWvXE4UL---B--
+POST /api/v1/register HTTP/1.1
+Host: api.local
+User-Agent: curl/8.5.0
+Accept: */*
+Content-Type: application/json
+Content-Length: 80
+
+---gWvXE4UL---D--
+
+---gWvXE4UL---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx/1.24.0 (Ubuntu)</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---gWvXE4UL---F--
+HTTP/1.1 403
+Server: nginx/1.24.0 (Ubuntu)
+Date: Wed, 25 Nov 2026 14:39:17 GMT
+Content-Length: 162
+Content-Type: text/html
+Connection: keep-alive
+
+---gWvXE4UL---H--
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.is_admin' (Value: `json.is_admin' ) [file "/etc/nginx/modsec/custom/api-custom.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/register"] [unique_id "179561755779.008053"] [ref "o0,4v0,4o0,16v5,16t:urlDecodeUnio0,9v0,9o0,13v0,13"]
+
+---gWvXE4UL---I--
+
+---gWvXE4UL---J--
+
+---gWvXE4UL---Z--
+
+---xy4hBgz9---A--
+[25/Nov/2026:19:39:17 +0500] 179561755724.182639 127.0.0.1 43968 127.0.0.1 80
+---xy4hBgz9---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNzU1NywiZXhwIjoxNzk1NjE5MzU3fQ.rNFt-Si5gTHJpgDAcJAiJriaOwF7lIYiZVjzqTSs5BA
+User-Agent: curl/8.5.0
+Accept: */*
+Content-Type: application/json
+Content-Length: 19
+
+---xy4hBgz9---D--
+
+---xy4hBgz9---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx/1.24.0 (Ubuntu)</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---xy4hBgz9---F--
+HTTP/1.1 403
+Server: nginx/1.24.0 (Ubuntu)
+Date: Wed, 25 Nov 2026 14:39:17 GMT
+Content-Length: 162
+Content-Type: text/html
+Connection: keep-alive
+
+---xy4hBgz9---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/nginx/modsec/custom/api-custom.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561755724.182639"] [ref "o0,25v6,25"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.is_admin' (Value: `json.is_admin' ) [file "/etc/nginx/modsec/custom/api-custom.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561755724.182639"] [ref "o0,5v0,5o0,25v6,25t:urlDecodeUnio0,13v0,13"]
+
+---xy4hBgz9---I--
+
+---xy4hBgz9---J--
+
+---xy4hBgz9---Z--
+

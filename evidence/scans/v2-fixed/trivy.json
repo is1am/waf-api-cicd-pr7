@@ -1,0 +1,90 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.76.2"
+  },
+  "ReportID": "01a21318-70bb-70b1-88fb-b0e497d6ff43",
+  "CreatedAt": "2026-11-25T14:24:58.55505015Z",
+  "ArtifactID": "sha256:d1bea8b341c6e307ea5479d97d48f4b1aeb3132cee25c2023991ac8a7a956d68",
+  "ArtifactName": "/repo",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "/mnt/c/Users/islam/Desktop/Клиент-серверные технологии и их безопасность/ПР7_WAF_API_CICD",
+    "Tags": [
+      "v2-fixed"
+    ],
+    "Commit": "eaf75c80544843af3683b05a048e9fe9864d194e",
+    "CommitMsg": "v2: исправление BOLA (проверка владельца) и Mass Assignment (схемы запросов), без лишних полей в ответах",
+    "Author": "Nurtaz1nov \u003c97106124+Nurtaz1nov@users.noreply.github.com\u003e",
+    "Committer": "Nurtaz1nov \u003c97106124+Nurtaz1nov@users.noreply.github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "requirements.txt",
+      "Class": "lang-pkgs",
+      "Type": "pip",
+      "Packages": [
+        {
+          "Name": "Flask",
+          "Identifier": {
+            "PURL": "pkg:pypi/flask@3.1.3",
+            "UID": "a4e8c04b81a3897f"
+          },
+          "Version": "3.1.3",
+          "Locations": [
+            {
+              "StartLine": 1,
+              "EndLine": 1
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "Jinja2",
+          "Identifier": {
+            "PURL": "pkg:pypi/jinja2@3.1.6",
+            "UID": "df87b10b4f3fcdf6"
+          },
+          "Version": "3.1.6",
+          "Locations": [
+            {
+              "StartLine": 3,
+              "EndLine": 3
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "PyJWT",
+          "Identifier": {
+            "PURL": "pkg:pypi/pyjwt@2.15.1",
+            "UID": "b97c67a2c1a4df9e"
+          },
+          "Version": "2.15.1",
+          "Locations": [
+            {
+              "StartLine": 4,
+              "EndLine": 4
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "Werkzeug",
+          "Identifier": {
+            "PURL": "pkg:pypi/werkzeug@3.1.9",
+            "UID": "be0705c974f1b9a1"
+          },
+          "Version": "3.1.9",
+          "Locations": [
+            {
+              "StartLine": 2,
+              "EndLine": 2
+            }
+          ],
+          "AnalyzedBy": "pip"
+        }
+      ]
+    }
+  ]
+}

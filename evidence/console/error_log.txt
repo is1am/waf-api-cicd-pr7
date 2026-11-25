@@ -1,0 +1,5 @@
+root@enu-lab:~/pr7# grep -E 'id "10[0-9]{2}"' /var/log/nginx/api.local.error.log | sed -E 's/.*(\[id[^]]*\]).*(\[msg[^]]*\]).*(\[data[^]]*\]).*(\[uri[^]]*\]).*/\1 \2 \3 \4/' | tail -4
+[id "1010"] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [uri "/api/v1/users/101/profile"]
+[id "1006"] [msg "BOLA: object id does not match token subject"] [data "object=102 subject=101 uri=/api/v1/users/102/profile"] [uri "/api/v1/users/102/profile"]
+[id "1010"] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [uri "/api/v1/register"]
+[id "1010"] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [uri "/api/v1/users/101/profile"]

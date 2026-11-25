@@ -1,0 +1,6 @@
+gitleaks   exit=0   PASS
+semgrep    exit=0   PASS
+bandit     exit=0   PASS
+pip_audit  exit=0   PASS
+trivy      exit=0   PASS
+pytest     exit=0   PASS

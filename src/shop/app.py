@@ -1,12 +1,11 @@
-"""ENU Lab Shop API v1 — учебный REST API (УЯЗВИМАЯ ВЕРСИЯ, тег v1-vulnerable).
+"""ENU Lab Shop API v1 — учебный REST API (ИСПРАВЛЕННАЯ ВЕРСИЯ, тег v2-fixed).
 
-Намеренно оставлены две уязвимости из OWASP API Security Top 10 (2023):
-  * API1 — Broken Object Level Authorization (BOLA): профиль и заказ выдаются по ID из URL
-    без проверки, что объект принадлежит вызывающему пользователю;
-  * API3 — Broken Object Property Level Authorization (Mass Assignment): регистрация и
-    обновление профиля переносят в модель любые поля JSON, совпадающие со столбцами таблицы
-    (в т. ч. role, is_admin, balance).
-Остальные меры из ПР6 (параметризованные запросы, секрет из окружения, PBKDF2) сохранены.
+Исправления по результатам SAST (Semgrep), security-тестов и тестирования через WAF:
+  * API1 BOLA — проверка владельца объекта (can_access) во всех обработчиках с ID в пути;
+    для чужого объекта всегда 403 до обращения к данным (нет оракула существования);
+  * API3 Mass Assignment — явные схемы запросов (allowlist полей, проверка типов и длины),
+    лишние поля → 400; SQL-запросы статические, без имён столбцов из запроса;
+  * API3 Excessive Data Exposure — в ответе нет is_admin, ИИН и хеша пароля.
 """
 import logging
 import os
@@ -32,7 +31,28 @@ def load_secret() -> str:
 
 SECRET_KEY = load_secret()
 TOKEN_TTL = timedelta(minutes=30)
-PUBLIC_FIELDS = ("id", "username", "full_name", "email", "phone", "card_last4", "iin", "balance", "role", "is_admin")
+PUBLIC_FIELDS = ("id", "username", "full_name", "email", "phone", "card_last4", "balance", "role")
+
+# Схемы запросов (соответствуют openapi.yaml, additionalProperties: false): поле → максимальная длина
+REGISTER_SCHEMA = {"username": 32, "password": 128, "full_name": 100, "email": 100, "phone": 20}
+PROFILE_SCHEMA = {"full_name": 100, "email": 100, "phone": 20}
+
+
+def validate(data, schema, required=()):
+    """Возвращает текст ошибки или None. Неизвестные поля не игнорируются, а отклоняются."""
+    if not isinstance(data, dict):
+        return "JSON object expected"
+    unknown = sorted(set(data) - set(schema))
+    if unknown:
+        log.warning("mass assignment attempt: unexpected fields %s from %s", unknown, request.remote_addr)
+        return "unexpected fields: " + ", ".join(unknown)
+    for name in required:
+        if not data.get(name):
+            return f"{name} is required"
+    for name, value in data.items():
+        if not isinstance(value, str) or len(value) > schema[name]:
+            return f"invalid value for {name}"
+    return None
 
 
 def init_app_db() -> None:
@@ -70,11 +90,20 @@ def require_admin(f):
     @wraps(f)
     @require_auth
     def wrapper(*args, **kwargs):
-        if not (g.role == "admin" or g.is_admin):
+        if g.role != "admin":
+            log.warning("access denied: user=%s path=%s", g.user_id, request.path)
             return jsonify(error="forbidden"), 403
         return f(*args, **kwargs)
 
     return wrapper
+
+
+def can_access(owner_id: int) -> bool:
+    """Правило авторизации на уровне объекта: владелец или администратор."""
+    allowed = owner_id == g.user_id or g.role == "admin"
+    if not allowed:
+        log.warning("BOLA attempt: user=%s object_owner=%s path=%s", g.user_id, owner_id, request.path)
+    return allowed
 
 
 def public(row) -> dict:
@@ -94,18 +123,19 @@ def login():
 
 @app.post("/api/v1/register")
 def register():
-    data = request.get_json(silent=True) or {}
-    if not data.get("username") or not data.get("password"):
-        return jsonify(error="username and password required"), 400
-    data["password"] = db.hash_password(str(data["password"]))
-    # УЯЗВИМОСТЬ API3 (Mass Assignment): в INSERT попадают ВСЕ поля запроса,
-    # совпадающие со столбцами модели, — включая role, is_admin и balance.
-    fields = {k: v for k, v in data.items() if k in db.USER_COLUMNS and k != "id"}
-    cols = ", ".join(fields)
-    marks = ", ".join("?" for _ in fields)
+    data = request.get_json(silent=True)
+    error = validate(data, REGISTER_SCHEMA, required=("username", "password"))
+    if error:
+        return jsonify(error=error), 400
     conn = db.get_conn()
     try:
-        cur = conn.execute(f"INSERT INTO users ({cols}) VALUES ({marks})", tuple(fields.values()))
+        # роль, флаг администратора и баланс задаёт сервер, а не клиент
+        cur = conn.execute(
+            "INSERT INTO users (username, password, role, is_admin, full_name, email, phone, balance) "
+            "VALUES (?, ?, 'user', 0, ?, ?, ?, 0)",
+            (data["username"], db.hash_password(data["password"]),
+             data.get("full_name"), data.get("email"), data.get("phone")),
+        )
         conn.commit()
     except db.sqlite3.IntegrityError:
         return jsonify(error="username already exists"), 409
@@ -125,7 +155,8 @@ def products():
 @app.get("/api/v1/users/<int:user_id>/profile")
 @require_auth
 def get_profile(user_id):
-    # УЯЗВИМОСТЬ API1 (BOLA): нет проверки, что user_id == g.user_id
+    if not can_access(user_id):
+        return jsonify(error="forbidden"), 403
     row = db.get_conn().execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
     return jsonify(public(row)) if row else (jsonify(error="not found"), 404)
 
@@ -133,14 +164,18 @@ def get_profile(user_id):
 @app.patch("/api/v1/users/<int:user_id>/profile")
 @require_auth
 def update_profile(user_id):
-    data = request.get_json(silent=True) or {}
-    # УЯЗВИМОСТИ API1 + API3: чужой профиль и любые поля модели
-    fields = {k: v for k, v in data.items() if k in db.USER_COLUMNS and k not in ("id", "password")}
-    if not fields:
-        return jsonify(error="nothing to update"), 400
-    assignments = ", ".join(f"{k} = ?" for k in fields)
+    if not can_access(user_id):
+        return jsonify(error="forbidden"), 403
+    data = request.get_json(silent=True)
+    error = validate(data, PROFILE_SCHEMA) or (None if data else "nothing to update")
+    if error:
+        return jsonify(error=error), 400
     conn = db.get_conn()
-    conn.execute(f"UPDATE users SET {assignments} WHERE id = ?", (*fields.values(), user_id))
+    conn.execute(
+        "UPDATE users SET full_name = COALESCE(?, full_name), email = COALESCE(?, email), "
+        "phone = COALESCE(?, phone) WHERE id = ?",
+        (data.get("full_name"), data.get("email"), data.get("phone"), user_id),
+    )
     conn.commit()
     row = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
     return jsonify(public(row)) if row else (jsonify(error="not found"), 404)
@@ -149,9 +184,12 @@ def update_profile(user_id):
 @app.get("/api/v1/orders/<int:order_id>")
 @require_auth
 def order(order_id):
-    # УЯЗВИМОСТЬ API1 (BOLA): заказ любого пользователя
     row = db.get_conn().execute("SELECT * FROM orders WHERE id = ?", (order_id,)).fetchone()
-    return jsonify(dict(row)) if row else (jsonify(error="not found"), 404)
+    if row is None:
+        return jsonify(error="not found"), 404
+    if not can_access(row["user_id"]):
+        return jsonify(error="forbidden"), 403
+    return jsonify(dict(row))
 
 
 @app.get("/api/v1/admin/users")

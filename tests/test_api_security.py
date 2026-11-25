@@ -107,3 +107,12 @@ def test_response_does_not_expose_internal_fields(client):
     r = client.get(f"/api/v1/users/{ALIYA}/profile", headers=login(client, "aliya"))
     body = r.get_json()
     assert "password" not in body and "is_admin" not in body and "iin" not in body
+
+
+# ---------- найдено DAST (ZAP API scan): 500 после повторной регистрации ----------
+def test_duplicate_registration_does_not_lock_database(client):
+    body = {"username": "dup_user", "password": "Dup#2026pass"}
+    assert client.post("/api/v1/register", json=body).status_code == 201
+    assert client.post("/api/v1/register", json=body).status_code == 409
+    r = client.post("/api/v1/register", json={"username": "next_user", "password": "Next#2026pass"})
+    assert r.status_code == 201

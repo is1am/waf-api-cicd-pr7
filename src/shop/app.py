@@ -55,6 +55,21 @@ def validate(data, schema, required=()):
     return None
 
 
+def get_db():
+    """Одно соединение на запрос, закрывается в teardown (найдено DAST: утечка соединений → database is locked)."""
+    if "db" not in g:
+        g.db = db.get_conn()
+    return g.db
+
+
+@app.teardown_appcontext
+def close_db(exc):
+    conn = g.pop("db", None)
+    if conn is not None:
+        conn.rollback()          # незавершённая транзакция не должна удерживать блокировку
+        conn.close()
+
+
 def init_app_db() -> None:
     db.init_db(hasher=db.hash_password)
 
@@ -76,7 +91,7 @@ def require_auth(f):
             claims = jwt.decode(header[7:], SECRET_KEY, algorithms=["HS256"], options={"require": ["exp", "sub"]})
         except jwt.PyJWTError:
             return jsonify(error="unauthorized"), 401
-        row = db.get_conn().execute("SELECT id, role, is_admin FROM users WHERE id = ?",
+        row = get_db().execute("SELECT id, role, is_admin FROM users WHERE id = ?",
                                     (int(claims["sub"]),)).fetchone()
         if row is None:
             return jsonify(error="unauthorized"), 401
@@ -115,7 +130,7 @@ def public(row) -> dict:
 def login():
     data = request.get_json(silent=True) or {}
     username, password = str(data.get("username", "")), str(data.get("password", ""))
-    row = db.get_conn().execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+    row = get_db().execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
     if row is None or not db.verify_password(password, row["password"]):
         return jsonify(error="invalid credentials"), 401
     return jsonify(token=issue_token(row), id=row["id"], user=row["username"], role=row["role"])
@@ -127,7 +142,7 @@ def register():
     error = validate(data, REGISTER_SCHEMA, required=("username", "password"))
     if error:
         return jsonify(error=error), 400
-    conn = db.get_conn()
+    conn = get_db()
     try:
         # роль, флаг администратора и баланс задаёт сервер, а не клиент
         cur = conn.execute(
@@ -138,6 +153,7 @@ def register():
         )
         conn.commit()
     except db.sqlite3.IntegrityError:
+        conn.rollback()
         return jsonify(error="username already exists"), 409
     row = conn.execute("SELECT * FROM users WHERE id = ?", (cur.lastrowid,)).fetchone()
     return jsonify(public(row)), 201
@@ -146,7 +162,7 @@ def register():
 @app.get("/api/v1/products")
 def products():
     q = request.args.get("q", "")[:100]
-    rows = db.get_conn().execute(
+    rows = get_db().execute(
         "SELECT id, name, description, price FROM products WHERE name LIKE ?", (f"%{q}%",)
     ).fetchall()
     return jsonify([dict(r) for r in rows])
@@ -157,7 +173,7 @@ def products():
 def get_profile(user_id):
     if not can_access(user_id):
         return jsonify(error="forbidden"), 403
-    row = db.get_conn().execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+    row = get_db().execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
     return jsonify(public(row)) if row else (jsonify(error="not found"), 404)
 
 
@@ -170,7 +186,7 @@ def update_profile(user_id):
     error = validate(data, PROFILE_SCHEMA) or (None if data else "nothing to update")
     if error:
         return jsonify(error=error), 400
-    conn = db.get_conn()
+    conn = get_db()
     conn.execute(
         "UPDATE users SET full_name = COALESCE(?, full_name), email = COALESCE(?, email), "
         "phone = COALESCE(?, phone) WHERE id = ?",
@@ -184,7 +200,7 @@ def update_profile(user_id):
 @app.get("/api/v1/orders/<int:order_id>")
 @require_auth
 def order(order_id):
-    row = db.get_conn().execute("SELECT * FROM orders WHERE id = ?", (order_id,)).fetchone()
+    row = get_db().execute("SELECT * FROM orders WHERE id = ?", (order_id,)).fetchone()
     if row is None:
         return jsonify(error="not found"), 404
     if not can_access(row["user_id"]):
@@ -195,7 +211,7 @@ def order(order_id):
 @app.get("/api/v1/admin/users")
 @require_admin
 def admin_users():
-    rows = db.get_conn().execute("SELECT * FROM users").fetchall()
+    rows = get_db().execute("SELECT * FROM users").fetchall()
     return jsonify([public(r) for r in rows])
 
 

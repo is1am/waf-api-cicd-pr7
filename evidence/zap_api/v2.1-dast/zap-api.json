@@ -1,0 +1,2361 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Wed, 25 Nov 2026 14:59:10",
+	"created": "2026-11-25T14:59:10.851320882Z",
+	"insights":[
+		{
+			"level": "Medium",
+			"reason": "Exceeded High",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.code.4xx",
+			"description": "Percentage of responses with status code 4xx",
+			"statistic": "83"
+		},
+		{
+			"level": "Low",
+			"reason": "Warning",
+			"site": "",
+			"key": "insight.log.warn",
+			"description": "ZAP warnings logged - see the zap.log file for details",
+			"statistic": "15"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "",
+			"key": "insight.network.failure",
+			"description": "Percentage of network failures",
+			"statistic": "1"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.code.2xx",
+			"description": "Percentage of responses with status code 2xx",
+			"statistic": "16"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.endpoint.ctype.application/json",
+			"description": "Percentage of endpoints with content type application/json",
+			"statistic": "100"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.endpoint.method.GET",
+			"description": "Percentage of endpoints with method GET",
+			"statistic": "72"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.endpoint.method.PATCH",
+			"description": "Percentage of endpoints with method PATCH",
+			"statistic": "1"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.endpoint.method.POST",
+			"description": "Percentage of endpoints with method POST",
+			"statistic": "26"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.endpoint.total",
+			"description": "Count of total endpoints",
+			"statistic": "191"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:5000",
+			"key": "insight.response.slow",
+			"description": "Percentage of slow responses",
+			"statistic": "1"
+		}
+	],
+	"site":[ 
+		{
+			"@name": "http://127.0.0.1:5000",
+			"@host": "127.0.0.1",
+			"@port": "5000",
+			"@ssl": "false",
+			"alerts": [ 
+				{
+					"pluginid": "6",
+					"alertRef": "6-5",
+					"alert": "Path Traversal",
+					"name": "Path Traversal",
+					"riskcode": "3",
+					"confidence": "1",
+					"riskdesc": "High (Low)",
+					"desc": "<p>The Path Traversal attack technique allows an attacker access to files, directories, and commands that potentially reside outside the web document root directory. An attacker may manipulate a URL in such a way that the web site will execute or reveal the contents of arbitrary files anywhere on the web server. Any device that exposes an HTTP-based interface is potentially vulnerable to Path Traversal.</p><p></p><p>Most web sites restrict user access to a specific portion of the file-system, typically called the \"web document root\" or \"CGI root\" directory. These directories contain the files intended for user access and the executable necessary to drive web application functionality. To access files or execute commands anywhere on the file-system, Path Traversal attacks will utilize the ability of special-characters sequences.</p><p></p><p>The most basic Path Traversal attack uses the \"../\" special-character sequence to alter the resource location requested in the URL. Although most popular web servers will prevent this technique from escaping the web document root, alternate encodings of the \"../\" sequence may help bypass the security filters. These method variations include valid and invalid Unicode-encoding (\"..%u2216\" or \"..%c0%af\") of the forward slash character, backslash characters (\"..\\\") on Windows-based servers, URL encoded characters \"%2e%2e%2f\"), and double URL encoding (\"..%255c\") of the backslash character.</p><p></p><p>Even if the web server properly restricts Path Traversal attempts in the URL path, a web application itself may still be vulnerable due to improper handling of user-supplied input. This is a common problem of web applications that use template mechanisms or load static text from files. In variations of the attack, the original URL parameter value is substituted with the file name of one of the web application's dynamic scripts. Consequently, the results can reveal source code because the file is interpreted as text instead of an executable script. These techniques often employ additional special characters such as the dot (\".\") to reveal the listing of the current working directory, or \"%00\" NULL characters in order to bypass rudimentary file extension checks.</p>",
+					"instances":[ 
+						{
+							"id": "84",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "username",
+							"attack": "register",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Assume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p></p><p>When performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p></p><p>For filenames, use stringent allow lists that limit the character set to be used. If feasible, only allow a single \".\" character in the filename to avoid weaknesses, and exclude directory separators such as \"/\". Use an allow list of allowable file extensions.</p><p></p><p>Warning: if you attempt to cleanse your data, then do so that the end result is not in the form that can be dangerous. A sanitizing mechanism can remove characters such as '.' and ';' which may be required for some exploits. An attacker can try to fool the sanitizing mechanism into \"cleaning\" data into a dangerous form. Suppose the attacker injects a '.' inside a filename (e.g. \"sensi.tiveFile\") and the sanitizing mechanism removes the character resulting in the valid filename, \"sensitiveFile\". If the input data are now assumed to be safe, then the file may be compromised. </p><p></p><p>Inputs should be decoded and canonicalized to the application's current internal representation before being validated. Make sure that your application does not decode the same input twice. Such errors could be used to bypass allow list schemes by introducing dangerous inputs after they have been checked.</p><p></p><p>Use a built-in path canonicalization function (such as realpath() in C) that produces the canonical version of the pathname, which effectively removes \"..\" sequences and symbolic links.</p><p></p><p>Run your code using the lowest privileges that are required to accomplish the necessary tasks. If possible, create isolated accounts with limited privileges that are only used for a single task. That way, a successful attack will not immediately give the attacker access to the rest of the software or its environment. For example, database applications rarely need to run as the database administrator, especially in day-to-day operations.</p><p></p><p>When the set of acceptable objects, such as filenames or URLs, is limited or known, create a mapping from a set of fixed input values (such as numeric IDs) to the actual filenames or URLs, and reject all other inputs.</p><p></p><p>Run your code in a \"jail\" or similar sandbox environment that enforces strict boundaries between the process and the operating system. This may effectively restrict which files can be accessed in a particular directory or which commands can be executed by your software.</p><p></p><p>OS-level examples include the Unix chroot jail, AppArmor, and SELinux. In general, managed code may provide some protection. For example, java.io.FilePermission in the Java SecurityManager allows you to specify restrictions on file operations.</p><p></p><p>This may not be a feasible solution, and it only limits the impact to the operating system; the rest of your application may still be subject to compromise.</p><p></p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-community/attacks/Path_Traversal</p><p>https://cwe.mitre.org/data/definitions/22.html</p>",
+					"cweid": "22",
+					"wascid": "33",
+					"sourceid": "112"
+				},
+				{
+					"pluginid": "10036",
+					"alertRef": "10036-2",
+					"alert": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"name": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>The web/application server is leaking version information via the \"Server\" HTTP response header. Access to such information may facilitate attackers identifying other vulnerabilities your web/application server is subject to.</p>",
+					"instances":[ 
+						{
+							"id": "48",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Werkzeug/3.1.9 Python/3.12.3",
+							"otherinfo": ""
+						},
+						{
+							"id": "51",
+							"uri": "http://127.0.0.1:5000/api/v1/products?q=USB",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/products (q)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Werkzeug/3.1.9 Python/3.12.3",
+							"otherinfo": ""
+						},
+						{
+							"id": "47",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Werkzeug/3.1.9 Python/3.12.3",
+							"otherinfo": ""
+						},
+						{
+							"id": "49",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "Werkzeug/3.1.9 Python/3.12.3",
+							"otherinfo": ""
+						},
+						{
+							"id": "50",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "Werkzeug/3.1.9 Python/3.12.3",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to suppress the \"Server\" header or provide generic details.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://httpd.apache.org/docs/current/mod/core.html#servertokens</p><p>https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff648552(v=pandp.10)</p><p>https://www.troyhunt.com/shhh-dont-let-your-response-headers/</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "11"
+				},
+				{
+					"pluginid": "100000",
+					"alertRef": "100000-1",
+					"alert": "A Client Error response code was returned by the server",
+					"name": "A Client Error response code was returned by the server",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>A response code of 404 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
+					"instances":[ 
+						{
+							"id": "11",
+							"uri": "http://127.0.0.1:5000",
+							"nodeName": "http:\/\/127.0.0.1:5000",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "820",
+							"uri": "http://127.0.0.1:5000?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000 (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1304",
+							"uri": "http://127.0.0.1:5000/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1503",
+							"uri": "http://127.0.0.1:5000/.DS_Store",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.DS_Store",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1532",
+							"uri": "http://127.0.0.1:5000/._darcs",
+							"nodeName": "http:\/\/127.0.0.1:5000\/._darcs",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1531",
+							"uri": "http://127.0.0.1:5000/.bzr",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.bzr",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1463",
+							"uri": "http://127.0.0.1:5000/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1487",
+							"uri": "http://127.0.0.1:5000/.git/config",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.git\/config",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1530",
+							"uri": "http://127.0.0.1:5000/.hg",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.hg",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1449",
+							"uri": "http://127.0.0.1:5000/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1482",
+							"uri": "http://127.0.0.1:5000/.idea/WebServers.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.idea\/WebServers.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1504",
+							"uri": "http://127.0.0.1:5000/.php_cs.cache",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.php_cs.cache",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1515",
+							"uri": "http://127.0.0.1:5000/.ssh/id_dsa",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.ssh\/id_dsa",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1514",
+							"uri": "http://127.0.0.1:5000/.ssh/id_rsa",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.ssh\/id_rsa",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1489",
+							"uri": "http://127.0.0.1:5000/.svn/entries",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.svn\/entries",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1490",
+							"uri": "http://127.0.0.1:5000/.svn/wc.db",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.svn\/wc.db",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1476",
+							"uri": "http://127.0.0.1:5000/.zap9111763813769535078",
+							"nodeName": "http:\/\/127.0.0.1:5000\/.zap9111763813769535078",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "4",
+							"uri": "http://127.0.0.1:5000/6348575236385486625",
+							"nodeName": "http:\/\/127.0.0.1:5000\/6348575236385486625",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1533",
+							"uri": "http://127.0.0.1:5000/BitKeeper",
+							"nodeName": "http:\/\/127.0.0.1:5000\/BitKeeper",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1518",
+							"uri": "http://127.0.0.1:5000/CHANGELOG.txt",
+							"nodeName": "http:\/\/127.0.0.1:5000\/CHANGELOG.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1491",
+							"uri": "http://127.0.0.1:5000/CVS/root",
+							"nodeName": "http:\/\/127.0.0.1:5000\/CVS\/root",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1505",
+							"uri": "http://127.0.0.1:5000/DEADJOE",
+							"nodeName": "http:\/\/127.0.0.1:5000\/DEADJOE",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1500",
+							"uri": "http://127.0.0.1:5000/FileZilla.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/FileZilla.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "194",
+							"uri": "http://127.0.0.1:5000/WEB-INF/applicationContext.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/WEB-INF\/applicationContext.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "189",
+							"uri": "http://127.0.0.1:5000/WEB-INF/web.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/WEB-INF\/web.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1497",
+							"uri": "http://127.0.0.1:5000/WS_FTP.INI",
+							"nodeName": "http:\/\/127.0.0.1:5000\/WS_FTP.INI",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1495",
+							"uri": "http://127.0.0.1:5000/WS_FTP.ini",
+							"nodeName": "http:\/\/127.0.0.1:5000\/WS_FTP.ini",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1502",
+							"uri": "http://127.0.0.1:5000/WinSCP.ini",
+							"nodeName": "http:\/\/127.0.0.1:5000\/WinSCP.ini",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1529",
+							"uri": "http://127.0.0.1:5000/_framework/blazor.boot.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/_framework\/blazor.boot.json",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1528",
+							"uri": "http://127.0.0.1:5000/_wpeprivate/config.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/_wpeprivate\/config.json",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1516",
+							"uri": "http://127.0.0.1:5000/adminer.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/adminer.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "12",
+							"uri": "http://127.0.0.1:5000/api",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "823",
+							"uri": "http://127.0.0.1:5000/api?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1797",
+							"uri": "http://127.0.0.1:5000/api-docs",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api-docs ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1305",
+							"uri": "http://127.0.0.1:5000/api/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1466",
+							"uri": "http://127.0.0.1:5000/api/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1452",
+							"uri": "http://127.0.0.1:5000/api/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "5",
+							"uri": "http://127.0.0.1:5000/api/3817724609618567887",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/3817724609618567887",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1438",
+							"uri": "http://127.0.0.1:5000/api/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "13",
+							"uri": "http://127.0.0.1:5000/api/v1",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "828",
+							"uri": "http://127.0.0.1:5000/api/v1?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1 (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "740",
+							"uri": "http://127.0.0.1:5000/api/v1?name=abc",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1 (name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1308",
+							"uri": "http://127.0.0.1:5000/api/v1/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1461",
+							"uri": "http://127.0.0.1:5000/api/v1/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1445",
+							"uri": "http://127.0.0.1:5000/api/v1/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "6",
+							"uri": "http://127.0.0.1:5000/api/v1/1560193188901251605",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/1560193188901251605",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1474",
+							"uri": "http://127.0.0.1:5000/api/v1/actuator/health",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/actuator\/health",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "16",
+							"uri": "http://127.0.0.1:5000/api/v1/admin",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "831",
+							"uri": "http://127.0.0.1:5000/api/v1/admin?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1311",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1468",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1454",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "7",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/6508979296972293826",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/6508979296972293826",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1440",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "3",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "830",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "1309",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1810",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "210",
+							"uri": "http://127.0.0.1:5000/api/v1/login?-s",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login (-s)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "813",
+							"uri": "http://127.0.0.1:5000/api/v1/login?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login (class.module.classLoader.DefaultAssertio...)({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "19",
+							"uri": "http://127.0.0.1:5000/api/v1/orders",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "835",
+							"uri": "http://127.0.0.1:5000/api/v1/orders?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "742",
+							"uri": "http://127.0.0.1:5000/api/v1/orders?name=abc",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders (name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1313",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1469",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1455",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "8",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/4528146129915015995",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/4528146129915015995",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "2",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "836",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001 (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "744",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001?name=abc",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001 (name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "1315",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1442",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1314",
+							"uri": "http://127.0.0.1:5000/api/v1/products/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/products\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1786",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "814",
+							"uri": "http://127.0.0.1:5000/api/v1/register?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register (class.module.classLoader.DefaultAssertio...)({username,password,full_name})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "1433",
+							"uri": "http://127.0.0.1:5000/api/v1/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "25",
+							"uri": "http://127.0.0.1:5000/api/v1/users",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "840",
+							"uri": "http://127.0.0.1:5000/api/v1/users?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1316",
+							"uri": "http://127.0.0.1:5000/api/v1/users/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1472",
+							"uri": "http://127.0.0.1:5000/api/v1/users/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1458",
+							"uri": "http://127.0.0.1:5000/api/v1/users/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "27",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "843",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101 (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "746",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101?name=abc",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101 (name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1318",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1460",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/.env",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/.env",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1447",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/.htaccess",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/.htaccess",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "10",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/328812495643966812",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/328812495643966812",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "0",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "1787",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile ()({phone})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "845",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile (class.module.classLoader.DefaultAssertio...)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "815",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile?class.module.classLoader.DefaultAssertionStatus=nonsense",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile (class.module.classLoader.DefaultAssertio...)({phone})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "738",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile?name=abc",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile (name)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "1319",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1432",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "9",
+							"uri": "http://127.0.0.1:5000/api/v1/users/6247182462485307951",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/6247182462485307951",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1444",
+							"uri": "http://127.0.0.1:5000/api/v1/users/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1507",
+							"uri": "http://127.0.0.1:5000/app/etc/local.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/app\/etc\/local.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1520",
+							"uri": "http://127.0.0.1:5000/composer.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/composer.json",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1521",
+							"uri": "http://127.0.0.1:5000/composer.lock",
+							"nodeName": "http:\/\/127.0.0.1:5000\/composer.lock",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1485",
+							"uri": "http://127.0.0.1:5000/config/database.yml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/config\/database.yml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1484",
+							"uri": "http://127.0.0.1:5000/config/databases.yml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/config\/databases.yml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1493",
+							"uri": "http://127.0.0.1:5000/core",
+							"nodeName": "http:\/\/127.0.0.1:5000\/core",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1798",
+							"uri": "http://127.0.0.1:5000/docs/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/docs\/ ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1429",
+							"uri": "http://127.0.0.1:5000/elmah.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/elmah.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1498",
+							"uri": "http://127.0.0.1:5000/filezilla.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/filezilla.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1526",
+							"uri": "http://127.0.0.1:5000/i.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/i.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1513",
+							"uri": "http://127.0.0.1:5000/id_dsa",
+							"nodeName": "http:\/\/127.0.0.1:5000\/id_dsa",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1512",
+							"uri": "http://127.0.0.1:5000/id_rsa",
+							"nodeName": "http:\/\/127.0.0.1:5000\/id_rsa",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1525",
+							"uri": "http://127.0.0.1:5000/info.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/info.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1511",
+							"uri": "http://127.0.0.1:5000/key.pem",
+							"nodeName": "http:\/\/127.0.0.1:5000\/key.pem",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1479",
+							"uri": "http://127.0.0.1:5000/lfm.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/lfm.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1510",
+							"uri": "http://127.0.0.1:5000/myserver.key",
+							"nodeName": "http:\/\/127.0.0.1:5000\/myserver.key",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1796",
+							"uri": "http://127.0.0.1:5000/openapi.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/openapi.json ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1804",
+							"uri": "http://127.0.0.1:5000/openapi.yaml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/openapi.yaml ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1524",
+							"uri": "http://127.0.0.1:5000/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/phpinfo.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1509",
+							"uri": "http://127.0.0.1:5000/privatekey.key",
+							"nodeName": "http:\/\/127.0.0.1:5000\/privatekey.key",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1523",
+							"uri": "http://127.0.0.1:5000/server-info",
+							"nodeName": "http:\/\/127.0.0.1:5000\/server-info",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1492",
+							"uri": "http://127.0.0.1:5000/server-status",
+							"nodeName": "http:\/\/127.0.0.1:5000\/server-status",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1508",
+							"uri": "http://127.0.0.1:5000/server.key",
+							"nodeName": "http:\/\/127.0.0.1:5000\/server.key",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1494",
+							"uri": "http://127.0.0.1:5000/sftp-config.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/sftp-config.json",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1499",
+							"uri": "http://127.0.0.1:5000/sitemanager.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/sitemanager.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1519",
+							"uri": "http://127.0.0.1:5000/sites/default/files/.ht.sqlite",
+							"nodeName": "http:\/\/127.0.0.1:5000\/sites\/default\/files\/.ht.sqlite",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1506",
+							"uri": "http://127.0.0.1:5000/sites/default/private/files/backup_migrate/scheduled/test.txt",
+							"nodeName": "http:\/\/127.0.0.1:5000\/sites\/default\/private\/files\/backup_migrate\/scheduled\/test.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1799",
+							"uri": "http://127.0.0.1:5000/swagger",
+							"nodeName": "http:\/\/127.0.0.1:5000\/swagger ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1785",
+							"uri": "http://127.0.0.1:5000/swagger-ui/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/swagger-ui\/ ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1803",
+							"uri": "http://127.0.0.1:5000/swagger-ui/index.html",
+							"nodeName": "http:\/\/127.0.0.1:5000\/swagger-ui\/index.html ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1794",
+							"uri": "http://127.0.0.1:5000/swagger.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/swagger.json ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1805",
+							"uri": "http://127.0.0.1:5000/swagger.yaml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/swagger.yaml ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1807",
+							"uri": "http://127.0.0.1:5000/swagger/ui/index.html",
+							"nodeName": "http:\/\/127.0.0.1:5000\/swagger\/ui\/index.html ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1527",
+							"uri": "http://127.0.0.1:5000/test.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/test.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1435",
+							"uri": "http://127.0.0.1:5000/trace.axd",
+							"nodeName": "http:\/\/127.0.0.1:5000\/trace.axd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1801",
+							"uri": "http://127.0.0.1:5000/v2/api-docs",
+							"nodeName": "http:\/\/127.0.0.1:5000\/v2\/api-docs ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1792",
+							"uri": "http://127.0.0.1:5000/v3/api-docs",
+							"nodeName": "http:\/\/127.0.0.1:5000\/v3\/api-docs ()({username,password})",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1517",
+							"uri": "http://127.0.0.1:5000/vb_test.php",
+							"nodeName": "http:\/\/127.0.0.1:5000\/vb_test.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1522",
+							"uri": "http://127.0.0.1:5000/vim_settings.xml",
+							"nodeName": "http:\/\/127.0.0.1:5000\/vim_settings.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1501",
+							"uri": "http://127.0.0.1:5000/winscp.ini",
+							"nodeName": "http:\/\/127.0.0.1:5000\/winscp.ini",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1496",
+							"uri": "http://127.0.0.1:5000/ws_ftp.ini",
+							"nodeName": "http:\/\/127.0.0.1:5000\/ws_ftp.ini",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1473",
+							"uri": "http://127.0.0.1:5000/zap4559004428240429439",
+							"nodeName": "http:\/\/127.0.0.1:5000\/zap4559004428240429439",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile ()({phone})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "1302",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile\/ ()({phone})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "824",
+							"uri": "http://127.0.0.1:5000",
+							"nodeName": "http:\/\/127.0.0.1:5000 ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "223",
+							"uri": "http://127.0.0.1:5000/?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/ (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "226",
+							"uri": "http://127.0.0.1:5000/?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/ (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "826",
+							"uri": "http://127.0.0.1:5000/api",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "228",
+							"uri": "http://127.0.0.1:5000/api?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "229",
+							"uri": "http://127.0.0.1:5000/api?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "829",
+							"uri": "http://127.0.0.1:5000/api/v1",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1 ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "230",
+							"uri": "http://127.0.0.1:5000/api/v1?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1 (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "232",
+							"uri": "http://127.0.0.1:5000/api/v1?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1 (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "833",
+							"uri": "http://127.0.0.1:5000/api/v1/admin",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "233",
+							"uri": "http://127.0.0.1:5000/api/v1/admin?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "236",
+							"uri": "http://127.0.0.1:5000/api/v1/admin?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "834",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "235",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "240",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "851",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()(------ee6bdd1c-2c54-4eae-b548-cbcc1fb37494\r\nContent-Disposition: form-data; name=\"1\"\r\n\r\n{}\r\n------ee6bdd1c-2c54-4eae-b548-cbcc1fb37494\r\nContent-Disposition: form-data; name=\"0\"\r\n\r\n[\"$1:a:a\"]\r\n------ee6bdd1c-2c54-4eae-b548-cbcc1fb37494--\r\n)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "821",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "15",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "218",
+							"uri": "http://127.0.0.1:5000/api/v1/login?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "225",
+							"uri": "http://127.0.0.1:5000/api/v1/login?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "1299",
+							"uri": "http://127.0.0.1:5000/api/v1/login/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "841",
+							"uri": "http://127.0.0.1:5000/api/v1/orders",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "237",
+							"uri": "http://127.0.0.1:5000/api/v1/orders?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "241",
+							"uri": "http://127.0.0.1:5000/api/v1/orders?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "839",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001 ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "242",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001 (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "246",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001 (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "239",
+							"uri": "http://127.0.0.1:5000/api/v1/products?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/products (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "244",
+							"uri": "http://127.0.0.1:5000/api/v1/products?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/products (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "838",
+							"uri": "http://127.0.0.1:5000/api/v1/products?q=USB",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/products (q)(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "822",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()(aaa)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "817",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "30",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "86",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "409",
+							"otherinfo": ""
+						},
+						{
+							"id": "217",
+							"uri": "http://127.0.0.1:5000/api/v1/register?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "222",
+							"uri": "http://127.0.0.1:5000/api/v1/register?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "400",
+							"otherinfo": ""
+						},
+						{
+							"id": "1301",
+							"uri": "http://127.0.0.1:5000/api/v1/register/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register\/ ()({username,password,full_name})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "844",
+							"uri": "http://127.0.0.1:5000/api/v1/users",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "243",
+							"uri": "http://127.0.0.1:5000/api/v1/users?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "247",
+							"uri": "http://127.0.0.1:5000/api/v1/users?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "846",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101 ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "248",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101 (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "250",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101 (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "818",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile ()(class.module.classLoader.DefaultAssertio...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "219",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('cmd.exe \/C echo 188nz92u8wdx...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "221",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile?-d+allow_url_include%3d1+-d+auto_prepend_file%3dphp://input",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile (-d allow_url_include=1 -d auto_prepend_f...)(<?php exec('echo 188nz92u8wdxb72obuft',$...)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "405",
+							"otherinfo": ""
+						},
+						{
+							"id": "1051",
+							"uri": "http://127.0.0.1:5000/computeMetadata/v1/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/computeMetadata\/v1\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1047",
+							"uri": "http://127.0.0.1:5000/latest/meta-data/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/latest\/meta-data\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1061",
+							"uri": "http://127.0.0.1:5000/metadata/instance",
+							"nodeName": "http:\/\/127.0.0.1:5000\/metadata\/instance ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1063",
+							"uri": "http://127.0.0.1:5000/metadata/v1",
+							"nodeName": "http:\/\/127.0.0.1:5000\/metadata\/v1 ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1055",
+							"uri": "http://127.0.0.1:5000/opc/v1/instance/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/opc\/v1\/instance\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1057",
+							"uri": "http://127.0.0.1:5000/opc/v2/instance/",
+							"nodeName": "http:\/\/127.0.0.1:5000\/opc\/v2\/instance\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1066",
+							"uri": "http://127.0.0.1:5000/openstack/latest/meta_data.json",
+							"nodeName": "http:\/\/127.0.0.1:5000\/openstack\/latest\/meta_data.json ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						}
+					],
+					"count": "194",
+					"systemic": false,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "388",
+					"wascid": "20",
+					"sourceid": "29"
+				},
+				{
+					"pluginid": "10111",
+					"alertRef": "10111",
+					"alert": "Authentication Request Identified",
+					"name": "Authentication Request Identified",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
+					"instances":[ 
+						{
+							"id": "37",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "username",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=username\nuserValue=aliya\npasswordParam=password"
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>userParam=username</p><p>userValue=aliya</p><p>passwordParam=password</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/auth-req-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10049",
+					"alertRef": "10049-1",
+					"alert": "Non-Storable Content",
+					"name": "Non-Storable Content",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
+					"instances":[ 
+						{
+							"id": "59",
+							"uri": "http://127.0.0.1:5000/api/v1/admin/users",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/admin\/users",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "58",
+							"uri": "http://127.0.0.1:5000/api/v1/orders/5001",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/orders\/5001",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "64",
+							"uri": "http://127.0.0.1:5000/api/v1/users/101/profile",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/users\/101\/profile ()({phone})",
+							"method": "PATCH",
+							"param": "",
+							"attack": "",
+							"evidence": "PATCH ",
+							"otherinfo": ""
+						},
+						{
+							"id": "61",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						},
+						{
+							"id": "62",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "no-store",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>The content may be marked as storable by ensuring that the following conditions are satisfied:</p><p>The request method must be understood by the cache and defined as being cacheable (\"GET\", \"HEAD\", and \"POST\" are currently defined as cacheable)</p><p>The response status code must be understood by the cache (one of the 1XX, 2XX, 3XX, 4XX, or 5XX response classes are generally understood)</p><p>The \"no-store\" cache directive must not appear in the request or response header fields</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"private\" response directive must not appear in the response</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"Authorization\" header field must not appear in the request, unless the response explicitly allows it (using one of the \"must-revalidate\", \"public\", or \"s-maxage\" Cache-Control response directives)</p><p>In addition to the conditions above, at least one of the following conditions must also be satisfied by the response:</p><p>It must contain an \"Expires\" header field</p><p>It must contain a \"max-age\" response directive</p><p>For \"shared\" caches such as \"proxy\" caches, it must contain a \"s-maxage\" response directive</p><p>It must contain a \"Cache Control Extension\" that allows it to be cached</p><p>It must have a status code that is defined as cacheable by default (200, 203, 204, 206, 300, 301, 404, 405, 410, 414, 501).</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+					"cweid": "524",
+					"wascid": "13",
+					"sourceid": "13"
+				},
+				{
+					"pluginid": "10112",
+					"alertRef": "10112",
+					"alert": "Session Management Response Identified",
+					"name": "Session Management Response Identified",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The given response has been identified as containing a session management token. The 'Other Info' field contains a set of header tokens that can be used in the Header Based Session Management Method. If the request is in a context which has a Session Management Method set to \"Auto-Detect\" then this rule will change the session management to use the tokens identified.</p>",
+					"instances":[ 
+						{
+							"id": "39",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "token",
+							"attack": "",
+							"evidence": "token",
+							"otherinfo": "json:token"
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>json:token</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/session-mgmt-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10104",
+					"alertRef": "10104",
+					"alert": "User Agent Fuzzer",
+					"name": "User Agent Fuzzer",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>Check for differences in response based on fuzzed User Agent (eg. mobile sites, access as a Search Engine Crawler). Compares the response statuscode and the hashcode of the response body with the original response.</p>",
+					"instances":[ 
+						{
+							"id": "1695",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "Header User-Agent",
+							"attack": "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "1630",
+							"uri": "http://127.0.0.1:5000/api/v1/login",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/login ()({username,password})",
+							"method": "POST",
+							"param": "Header User-Agent",
+							"attack": "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "1731",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "Header User-Agent",
+							"attack": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "1694",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "Header User-Agent",
+							"attack": "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "1628",
+							"uri": "http://127.0.0.1:5000/api/v1/register",
+							"nodeName": "http:\/\/127.0.0.1:5000\/api\/v1\/register ()({username,password,full_name})",
+							"method": "POST",
+							"param": "Header User-Agent",
+							"attack": "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-project-web-security-testing-guide/</p>",
+					"cweid": "0",
+					"wascid": "0",
+					"sourceid": "2061"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}

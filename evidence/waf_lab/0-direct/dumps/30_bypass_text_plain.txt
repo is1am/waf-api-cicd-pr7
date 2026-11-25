@@ -1,0 +1,13 @@
+PATCH /api/v1/users/101/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+Content-Type: text/plain
+Content-Length: 14
+
+{"is_admin":1}
+
+HTTP/1.1 400 BAD REQUEST
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 30
+
+{"error":"nothing to update"}

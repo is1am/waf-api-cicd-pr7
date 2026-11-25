@@ -14,3 +14,4 @@ report/*.pdf
 report/build_report.py
 report/__pycache__/
 report/img/
+evidence/ci_local/*/dumps/

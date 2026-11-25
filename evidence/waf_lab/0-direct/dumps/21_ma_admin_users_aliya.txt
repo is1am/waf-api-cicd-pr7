@@ -1,0 +1,11 @@
+GET /api/v1/admin/users HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+
+
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 1759
+
+[{"balance":0,"card_last4":"4242","email":"admin@lab.local","full_name":"\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440 \u0441\u0438\u0441\u0442\u0435\u043c\u044b","id":100,"iin":"800101300100","is_admin":1,"phone":"+7 700 000 01 00","role":"admin","username":"admin"},{"balance":9999999,"card_last4":"1111","email":"aliya@lab.local","full_name":"\u0410\u043b\u0438\u044f \u0421\u0435\u0440\u0438\u043a\u043e\u0432\u0430","id":101,"iin":"990215450101","is_admin":1,"phone":"+7 701 555 01 01","role":"user","username":"aliya"},{"balance":42000,"card_last4":"2222","email":"attacker@evil.test","full_name":"\u0422\u0438\u043c\u0443\u0440 \u0410\u0445\u043c\u0435\u0442\u043e\u0432","id":102,"iin":"010330500102","is_admin":0,"phone":"+7 700 000 01 02","role":"user","username":"timur"},{"balance":8000,"card_last4":"3333","email":"dana@lab.local","full_name":"\u0414\u0430\u043d\u0430 \u041a\u0430\u0441\u044b\u043c\u043e\u0432\u0430","id":103,"iin":"000712600103","is_admin":0,"phone":"+7 700 000 01 03","role":"user","username":"dana"},{"balance":120000,"card_last4":"4444","email":"erlan@lab.local","full_name":"\u0415\u0440\u043b\u0430\u043d \u0416\u0443\u043c\u0430\u0431\u0435\u043a\u043e\u0432","id":104,"iin":"970101350104","is_admin":0,"phone":"+7 700 000 01 04","role":"user","username":"erlan"},{"balance":0,"card_last4":null,"email":null,"full_name":"\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u04

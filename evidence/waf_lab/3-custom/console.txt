@@ -1,0 +1,29 @@
+== 3-custom: http://127.0.0.1 (Host: api.local)
+  [LEGIT] Вход aliya (POST /api/v1/login)                            → 200  OK 
+  [LEGIT] Свой профиль GET /users/101/profile                        → 200  OK 
+  [LEGIT] Изменение своего телефона PATCH /users/101/profile         → 200  OK 
+  [LEGIT] Обычная регистрация POST /register                         → 201  OK 
+  [LEGIT] Поиск товаров GET /products?q=USB                          → 200  OK 
+  [LEGIT] Свой заказ GET /orders/5001                                → 200  OK 
+  [API1 ] Перебор ID: GET /users/100/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/102/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/103/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/104/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/105/profile                         → 403  отражена 
+  [API1 ] Перебор заказов GET /orders/5001…5012                      → 200/404/429 УСПЕХ АТАКИ чужих заказов получено: 2
+  [API1 ] Изменение чужого e-mail PATCH /users/102/profile           → 403  отражена 
+  [API3 ] Регистрация с role=admin, is_admin=true, balance           → 403  отражена 
+  [API3 ] PATCH своего профиля с is_admin=1, balance                 → 403  отражена 
+  [API3 ]   → доступ aliya к GET /admin/users                        → 403  отражена 
+  [CRS  ] SQLi UNION в ?q=                                           → 403  отражена 
+  [CRS  ] XSS в ?q=                                                  → 403  отражена 
+  [CRS  ] Path traversal в ?q=                                       → 403  отражена 
+  [CRS  ] RCE (команда ОС) в ?q=                                     → 403  отражена 
+  [BYPASS] BOLA: ID в URL-кодировке /users/%31%30%32/profile          → 403  отражена 
+  [BYPASS] BOLA: двойной слэш //api/v1/users/102/profile              → 403  отражена 
+  [BYPASS] MA: ключ в \u-экранировании "\u0069s_admin"                → 403  отражена 
+  [BYPASS] MA: дублирующийся ключ role                                → 403  отражена 
+  [BYPASS] MA: тело JSON с Content-Type text/plain                    → 415  отражена 
+  [BYPASS] MA: Content-Type application/vnd.api+json                  → 403  отражена 
+  [BYPASS] BOLA: подделанный JWT (sub=102, role=admin) без подписи    → 401  отражена API проверяет подпись
+ИТОГ [3-custom]: атак успешно 1/21, легитимных заблокировано 0/6

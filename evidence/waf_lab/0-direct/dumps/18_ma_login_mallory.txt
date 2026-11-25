@@ -1,0 +1,12 @@
+POST /api/v1/login HTTP/1.1
+Content-Type: application/json
+Content-Length: 58
+
+{"username": "mallory_c5c02f", "password": "Mallory#2026"}
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 225
+
+{"id":106,"role":"admin","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTU2MTU3NjcsImV4cCI6MTc5NTYxNzU2N30.I6o7gyIOj-2GfFXLe2-QLbtxk_4r8Ca8v8phxtUnMpM","user":"mallory_c5c02f"}

@@ -1,0 +1,13 @@
+POST /api/v1/login HTTP/1.1
+Host: api.local
+Content-Type: application/json
+Content-Length: 58
+
+{"username": "mallory_1900fc", "password": "Mallory#2026"}
+
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: application/json
+Content-Length: 225
+
+{"id":106,"role":"admin","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTU2MTU4MTQsImV4cCI6MTc5NTYxNzYxNH0.o7xTmsZS0vQ3yG6a6xCSRfEI41FMzUdTo6oG53Ug0Kw","user":"mallory_1900fc"}

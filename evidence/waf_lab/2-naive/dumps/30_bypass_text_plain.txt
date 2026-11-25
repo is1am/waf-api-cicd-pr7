@@ -1,0 +1,14 @@
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+Content-Type: text/plain
+Content-Length: 14
+
+{"is_admin":1}
+
+HTTP/1.1 403 Forbidden
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: text/html
+Content-Length: 162
+
+<html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> <hr><center>nginx/1.24.0 (Ubuntu)</center> </body> </html>

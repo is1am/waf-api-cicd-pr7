@@ -1,0 +1,11 @@
+GET /api/v1/users/103/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+
+
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 252
+
+{"balance":8000,"card_last4":"3333","email":"dana@lab.local","full_name":"\u0414\u0430\u043d\u0430 \u041a\u0430\u0441\u044b\u043c\u043e\u0432\u0430","id":103,"iin":"000712600103","is_admin":0,"phone":"+7 700 000 01 03","role":"user","username":"dana"}

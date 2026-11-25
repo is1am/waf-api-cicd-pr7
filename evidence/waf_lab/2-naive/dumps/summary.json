@@ -1,0 +1,236 @@
+{
+ "label": "2-naive",
+ "base": "http://127.0.0.1",
+ "leaked_profiles": [],
+ "attacks_total": 22,
+ "attacks_success": 3,
+ "legit_total": 6,
+ "legit_blocked": 2,
+ "results": [
+  {
+   "category": "LEGIT",
+   "case": "Вход aliya (POST /api/v1/login)",
+   "kind": "legit",
+   "status": 200,
+   "success": true,
+   "note": ""
+  },
+  {
+   "category": "LEGIT",
+   "case": "Свой профиль GET /users/101/profile",
+   "kind": "legit",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "LEGIT",
+   "case": "Изменение своего телефона PATCH /users/101/profile",
+   "kind": "legit",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "LEGIT",
+   "case": "Обычная регистрация POST /register",
+   "kind": "legit",
+   "status": 201,
+   "success": true,
+   "note": ""
+  },
+  {
+   "category": "LEGIT",
+   "case": "Поиск товаров GET /products?q=USB",
+   "kind": "legit",
+   "status": 200,
+   "success": true,
+   "note": ""
+  },
+  {
+   "category": "LEGIT",
+   "case": "Свой заказ GET /orders/5001",
+   "kind": "legit",
+   "status": 200,
+   "success": true,
+   "note": ""
+  },
+  {
+   "category": "API1",
+   "case": "Перебор ID: GET /users/100/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API1",
+   "case": "Перебор ID: GET /users/102/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API1",
+   "case": "Перебор ID: GET /users/103/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API1",
+   "case": "Перебор ID: GET /users/104/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API1",
+   "case": "Перебор ID: GET /users/105/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API1",
+   "case": "Перебор заказов GET /orders/5001…5012",
+   "kind": "attack",
+   "status": "200/404",
+   "success": true,
+   "note": "чужих заказов получено: 2"
+  },
+  {
+   "category": "API1",
+   "case": "Изменение чужого e-mail PATCH /users/102/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API3",
+   "case": "Регистрация с role=admin, is_admin=true, balance",
+   "kind": "attack",
+   "status": 201,
+   "success": true,
+   "note": ""
+  },
+  {
+   "category": "API3",
+   "case": "  → доступ mallory к GET /admin/users",
+   "kind": "attack",
+   "status": 200,
+   "success": true,
+   "note": "записей: 7"
+  },
+  {
+   "category": "API3",
+   "case": "PATCH своего профиля с is_admin=1, balance",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "API3",
+   "case": "  → доступ aliya к GET /admin/users",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "CRS",
+   "case": "SQLi UNION в ?q=",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "CRS",
+   "case": "XSS в ?q=",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "CRS",
+   "case": "Path traversal в ?q=",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "CRS",
+   "case": "RCE (команда ОС) в ?q=",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "BOLA: ID в URL-кодировке /users/%31%30%32/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "BOLA: двойной слэш //api/v1/users/102/profile",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "MA: ключ в \\u-экранировании \"\\u0069s_admin\"",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "MA: дублирующийся ключ role",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "MA: тело JSON с Content-Type text/plain",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "MA: Content-Type application/vnd.api+json",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  },
+  {
+   "category": "BYPASS",
+   "case": "BOLA: подделанный JWT (sub=102, role=admin) без подписи",
+   "kind": "attack",
+   "status": 403,
+   "success": false,
+   "note": ""
+  }
+ ],
+ "ts": "2026-11-25 19:10:14"
+}

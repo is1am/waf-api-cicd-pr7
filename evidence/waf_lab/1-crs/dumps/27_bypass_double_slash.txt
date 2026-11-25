@@ -1,0 +1,12 @@
+GET //api/v1/users/102/profile HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: application/json
+Content-Length: 255
+
+{"balance":42000,"card_last4":"2222","email":"timur@lab.local","full_name":"\u0422\u0438\u043c\u0443\u0440 \u0410\u0445\u043c\u0435\u0442\u043e\u0432","id":102,"iin":"010330500102","is_admin":0,"phone":"+7 700 000 01 02","role":"user","username":"timur"}

@@ -1,0 +1,12 @@
+GET /api/v1/orders/5001 HTTP/1.1
+Host: api.local
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: application/json
+Content-Length: 216
+
+{"address":"\u0410\u0441\u0442\u0430\u043d\u0430, \u0443\u043b. \u0421\u0430\u0442\u043f\u0430\u0435\u0432\u0430, 2","id":5001,"item":"\u041d\u043e\u0443\u0442\u0431\u0443\u043a Lab-14","total":450000,"user_id":101}

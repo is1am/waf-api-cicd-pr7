@@ -194,3 +194,31 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: always()
         with: { name: zap-api-report, path: "zap-api.*" }
+
+  # ------------------------------------------------------------------ 6. WAF-as-code: регрессия правил ModSecurity
+  waf-regression:
+    name: WAF regression (ModSecurity + CRS + API rules)
+    needs: [security-tests]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements-dev.txt
+      - name: Стенд API + WAF
+        run: |
+          mkdir -p waf/logs && chmod 777 waf/logs
+          SHOP_SECRET_KEY=$(openssl rand -hex 32) docker compose -f docker-compose.waf.yml up -d --wait
+          timeout 60 sh -c 'until curl -sf http://127.0.0.1:8080/api/v1/products >/dev/null; do sleep 2; done'
+      - name: Атаки OWASP API Top 10 через WAF (gate)
+        run: python scripts/api_attack.py --base http://127.0.0.1:8080 --out waf-evidence --label ci --gate
+      - name: Журналы WAF
+        if: always()
+        run: |
+          docker compose -f docker-compose.waf.yml logs waf > waf-evidence/waf-container.log 2>&1
+          cp waf/logs/audit.log waf-evidence/modsec_audit.log || true
+          grep -o 'id "10[0-9][0-9]"' waf-evidence/modsec_audit.log | sort | uniq -c || true
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with: { name: waf-evidence, path: waf-evidence }

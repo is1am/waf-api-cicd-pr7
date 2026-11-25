@@ -1,0 +1,11 @@
+GET /api/v1/users/100/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+
+
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 300
+
+{"balance":0,"card_last4":"4242","email":"admin@lab.local","full_name":"\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440 \u0441\u0438\u0441\u0442\u0435\u043c\u044b","id":100,"iin":"800101300100","is_admin":1,"phone":"+7 700 000 01 00","role":"admin","username":"admin"}

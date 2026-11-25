@@ -1,0 +1,10 @@
+GET /api/v1/products?q=%3Cscript%3Ealert(document.cookie)%3C/script%3E HTTP/1.1
+
+
+
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.3
+Content-Type: application/json
+Content-Length: 3
+
+[]

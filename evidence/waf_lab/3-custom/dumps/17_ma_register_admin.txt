@@ -1,0 +1,13 @@
+POST /api/v1/register HTTP/1.1
+Host: api.local
+Content-Type: application/json
+Content-Length: 137
+
+{"username": "mallory_db802e", "password": "Mallory#2026", "full_name": "Mallory", "role": "admin", "is_admin": true, "balance": 1000000}
+
+HTTP/1.1 403 Forbidden
+Server: nginx/1.24.0 (Ubuntu)
+Content-Type: text/html
+Content-Length: 162
+
+<html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> <hr><center>nginx/1.24.0 (Ubuntu)</center> </body> </html>

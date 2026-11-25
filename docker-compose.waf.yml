@@ -1,0 +1,36 @@
+# Стенд «API за WAF» для конвейера CI (WAF-as-code):
+#   api — ENU Lab Shop API v1 (Flask), доступен только внутри сети compose;
+#   waf — Nginx + ModSecurity v3 + OWASP CRS v4 (официальный образ) + правила проекта,
+#         подключённые как REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf (до правил CRS).
+services:
+  api:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes: [".:/app:ro"]
+    environment:
+      SHOP_HOST: 0.0.0.0
+      SHOP_DB: /tmp/shop.db
+      SHOP_SECRET_KEY: ${SHOP_SECRET_KEY:?задайте SHOP_SECRET_KEY}
+      PYTHONDONTWRITEBYTECODE: "1"
+    command: sh -c "pip install -q --root-user-action=ignore -r requirements.txt && python -m src.shop.app"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/api/v1/products')"]
+      interval: 3s
+      retries: 30
+
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    depends_on:
+      api: { condition: service_healthy }
+    ports: ["8080:8080"]
+    environment:
+      BACKEND: http://api:5000
+      PARANOIA: "1"
+      ANOMALY_INBOUND: "5"
+      MODSEC_RULE_ENGINE: "On"
+      MODSEC_AUDIT_LOG: /var/log/modsec/audit.log
+      MODSEC_AUDIT_LOG_FORMAT: Native
+      MODSEC_RESP_BODY_ACCESS: "Off"
+    volumes:
+      - ./waf/rules/api-custom.conf:/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf:ro
+      - ./waf/logs:/var/log/modsec

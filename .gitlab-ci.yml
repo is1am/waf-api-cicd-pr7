@@ -2,7 +2,7 @@
 # Встроенные анализаторы GitLab (Semgrep-based SAST, Gemnasium, Secret Detection)
 # публикуют отчёты в Security Dashboard / Merge Request widget,
 # а собственные задания *-gate останавливают конвейер при уязвимостях.
-stages: [test, security, dast]
+stages: [test, security, dast, waf]
 
 include:
   - template: Jobs/SAST.gitlab-ci.yml
@@ -96,3 +96,23 @@ zap-api-scan:
   artifacts:
     when: always
     paths: [zap-api.html, zap-api.json]
+
+waf-regression:
+  stage: waf
+  image: docker:27
+  services: [docker:27-dind]
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: tcp://docker:2375
+  needs: [security-tests]
+  script:
+    - apk add --no-cache python3 py3-requests curl openssl
+    - mkdir -p waf/logs && chmod 777 waf/logs
+    - SHOP_SECRET_KEY=$(openssl rand -hex 32) docker compose -f docker-compose.waf.yml up -d --wait
+    - timeout 60 sh -c 'until curl -sf http://docker:8080/api/v1/products >/dev/null; do sleep 2; done'
+    - python3 scripts/api_attack.py --base http://docker:8080 --out waf-evidence --label ci --gate
+  after_script:
+    - cp waf/logs/audit.log waf-evidence/modsec_audit.log || true
+  artifacts:
+    when: always
+    paths: [waf-evidence/]

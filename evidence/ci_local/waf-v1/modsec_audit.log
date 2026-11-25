@@ -1,0 +1,1310 @@
+---2Bhyg65L---A--
+[25/Nov/2026:14:23:03 +0000] 179561658310.853708 172.19.0.1 36712 172.19.0.3 8080
+---2Bhyg65L---B--
+POST /api/v1/login HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 47
+
+---2Bhyg65L---D--
+
+---2Bhyg65L---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 214
+Date: Wed, 25 Nov 2026 14:23:03 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---2Bhyg65L---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/login"] [unique_id "179561658310.853708"] [ref "o0,14o0,9o9,5v34,14"]
+
+---2Bhyg65L---I--
+
+---2Bhyg65L---J--
+
+---2Bhyg65L---Z--
+
+---YbBpB4t4---A--
+[25/Nov/2026:14:23:03 +0000] 179561658393.308279 172.19.0.1 36712 172.19.0.3 8080
+---YbBpB4t4---B--
+GET /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---YbBpB4t4---D--
+
+---YbBpB4t4---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 255
+Date: Wed, 25 Nov 2026 14:23:03 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---YbBpB4t4---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658393.308279"] [ref "o0,25v4,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658393.308279"] [ref "o0,14o0,9o9,5v45,14"]
+
+---YbBpB4t4---I--
+
+---YbBpB4t4---J--
+
+---YbBpB4t4---Z--
+
+---09sknk0c---A--
+[25/Nov/2026:14:23:03 +0000] 179561658334.913977 172.19.0.1 36712 172.19.0.3 8080
+---09sknk0c---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 29
+
+---09sknk0c---D--
+
+---09sknk0c---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 255
+Date: Wed, 25 Nov 2026 14:23:03 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---09sknk0c---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658334.913977"] [ref "o0,25v6,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658334.913977"] [ref "o0,14o0,9o9,5v47,14"]
+
+---09sknk0c---I--
+
+---09sknk0c---J--
+
+---09sknk0c---Z--
+
+---dfsfE75G---A--
+[25/Nov/2026:14:23:03 +0000] 179561658331.547447 172.19.0.1 36712 172.19.0.3 8080
+---dfsfE75G---B--
+POST /api/v1/register HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 112
+
+---dfsfE75G---D--
+
+---dfsfE75G---F--
+HTTP/1.1 201
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 260
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---dfsfE75G---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/register"] [unique_id "179561658331.547447"] [ref "o0,14o0,9o9,5v37,14"]
+
+---dfsfE75G---I--
+
+---dfsfE75G---J--
+
+---dfsfE75G---Z--
+
+---ImEyqIKO---A--
+[25/Nov/2026:14:23:04 +0000] 179561658474.856424 172.19.0.1 36712 172.19.0.3 8080
+---ImEyqIKO---B--
+GET /api/v1/products?q=USB HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---ImEyqIKO---D--
+
+---ImEyqIKO---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 194
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---ImEyqIKO---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658474.856424"] [ref "o0,14o0,9o9,5v42,14"]
+
+---ImEyqIKO---I--
+
+---ImEyqIKO---J--
+
+---ImEyqIKO---Z--
+
+---rTB0V44U---A--
+[25/Nov/2026:14:23:04 +0000] 179561658456.432686 172.19.0.1 36712 172.19.0.3 8080
+---rTB0V44U---B--
+GET /api/v1/orders/5001 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---rTB0V44U---D--
+
+---rTB0V44U---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 216
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---rTB0V44U---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5001"] [unique_id "179561658456.432686"] [ref "o0,14o0,9o9,5v39,14"]
+
+---rTB0V44U---I--
+
+---rTB0V44U---J--
+
+---rTB0V44U---Z--
+
+---BvEwdEYH---A--
+[25/Nov/2026:14:23:04 +0000] 179561658484.107520 172.19.0.1 36712 172.19.0.3 8080
+---BvEwdEYH---B--
+GET /api/v1/users/100/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---BvEwdEYH---D--
+
+---BvEwdEYH---F--
+HTTP/1.1 403
+
+---BvEwdEYH---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/100/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/100/profile"] [unique_id "179561658484.107520"] [ref "o0,25v4,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=100 subject=101 uri=/api/v1/users/100/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/100/profile"] [unique_id "179561658484.107520"] [ref ""]
+
+---BvEwdEYH---I--
+
+---BvEwdEYH---J--
+
+---BvEwdEYH---Z--
+
+---rPw5W1Jo---A--
+[25/Nov/2026:14:23:04 +0000] 179561658480.243488 172.19.0.1 36712 172.19.0.3 8080
+---rPw5W1Jo---B--
+GET /api/v1/users/102/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---rPw5W1Jo---D--
+
+---rPw5W1Jo---F--
+HTTP/1.1 403
+
+---rPw5W1Jo---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/102/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658480.243488"] [ref "o0,25v4,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=102 subject=101 uri=/api/v1/users/102/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658480.243488"] [ref ""]
+
+---rPw5W1Jo---I--
+
+---rPw5W1Jo---J--
+
+---rPw5W1Jo---Z--
+
+---lWmbm4yd---A--
+[25/Nov/2026:14:23:04 +0000] 17956165845.473215 172.19.0.1 36712 172.19.0.3 8080
+---lWmbm4yd---B--
+GET /api/v1/users/103/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---lWmbm4yd---D--
+
+---lWmbm4yd---F--
+HTTP/1.1 403
+
+---lWmbm4yd---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/103/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/103/profile"] [unique_id "17956165845.473215"] [ref "o0,25v4,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=103 subject=101 uri=/api/v1/users/103/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/103/profile"] [unique_id "17956165845.473215"] [ref ""]
+
+---lWmbm4yd---I--
+
+---lWmbm4yd---J--
+
+---lWmbm4yd---Z--
+
+---Y9b1CfVL---A--
+[25/Nov/2026:14:23:04 +0000] 179561658454.218917 172.19.0.1 36712 172.19.0.3 8080
+---Y9b1CfVL---B--
+GET /api/v1/users/104/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---Y9b1CfVL---D--
+
+---Y9b1CfVL---F--
+HTTP/1.1 403
+
+---Y9b1CfVL---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/104/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/104/profile"] [unique_id "179561658454.218917"] [ref "o0,25v4,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=104 subject=101 uri=/api/v1/users/104/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/104/profile"] [unique_id "179561658454.218917"] [ref ""]
+
+---Y9b1CfVL---I--
+
+---Y9b1CfVL---J--
+
+---Y9b1CfVL---Z--
+
+---YkICwqTm---A--
+[25/Nov/2026:14:23:04 +0000] 179561658464.255270 172.19.0.1 36712 172.19.0.3 8080
+---YkICwqTm---B--
+GET /api/v1/users/105/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---YkICwqTm---D--
+
+---YkICwqTm---F--
+HTTP/1.1 403
+
+---YkICwqTm---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/105/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/105/profile"] [unique_id "179561658464.255270"] [ref "o0,25v4,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=105 subject=101 uri=/api/v1/users/105/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/105/profile"] [unique_id "179561658464.255270"] [ref ""]
+
+---YkICwqTm---I--
+
+---YkICwqTm---J--
+
+---YkICwqTm---Z--
+
+---FNplN9X8---A--
+[25/Nov/2026:14:23:04 +0000] 179561658431.203078 172.19.0.1 36712 172.19.0.3 8080
+---FNplN9X8---B--
+GET /api/v1/orders/5001 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---FNplN9X8---D--
+
+---FNplN9X8---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 216
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---FNplN9X8---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5001"] [unique_id "179561658431.203078"] [ref "o0,14o0,9o9,5v39,14"]
+
+---FNplN9X8---I--
+
+---FNplN9X8---J--
+
+---FNplN9X8---Z--
+
+---dKiNOeyu---A--
+[25/Nov/2026:14:23:04 +0000] 179561658483.686900 172.19.0.1 36712 172.19.0.3 8080
+---dKiNOeyu---B--
+GET /api/v1/orders/5002 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---dKiNOeyu---D--
+
+---dKiNOeyu---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 214
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---dKiNOeyu---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5002"] [unique_id "179561658483.686900"] [ref "o0,14o0,9o9,5v39,14"]
+
+---dKiNOeyu---I--
+
+---dKiNOeyu---J--
+
+---dKiNOeyu---Z--
+
+---nZwxCPJl---A--
+[25/Nov/2026:14:23:04 +0000] 179561658434.611480 172.19.0.1 36712 172.19.0.3 8080
+---nZwxCPJl---B--
+GET /api/v1/orders/5003 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---nZwxCPJl---D--
+
+---nZwxCPJl---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 191
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---nZwxCPJl---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5003"] [unique_id "179561658434.611480"] [ref "o0,14o0,9o9,5v39,14"]
+
+---nZwxCPJl---I--
+
+---nZwxCPJl---J--
+
+---nZwxCPJl---Z--
+
+---9Zx4POod---A--
+[25/Nov/2026:14:23:04 +0000] 179561658422.008855 172.19.0.1 36712 172.19.0.3 8080
+---9Zx4POod---B--
+GET /api/v1/orders/5004 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---9Zx4POod---D--
+
+---9Zx4POod---F--
+HTTP/1.1 200
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 262
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---9Zx4POod---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5004"] [unique_id "179561658422.008855"] [ref "o0,14o0,9o9,5v39,14"]
+
+---9Zx4POod---I--
+
+---9Zx4POod---J--
+
+---9Zx4POod---Z--
+
+---ldM6kuDN---A--
+[25/Nov/2026:14:23:04 +0000] 179561658486.601387 172.19.0.1 36712 172.19.0.3 8080
+---ldM6kuDN---B--
+GET /api/v1/orders/5005 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---ldM6kuDN---D--
+
+---ldM6kuDN---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---ldM6kuDN---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5005"] [unique_id "179561658486.601387"] [ref "o0,14o0,9o9,5v39,14"]
+
+---ldM6kuDN---I--
+
+---ldM6kuDN---J--
+
+---ldM6kuDN---Z--
+
+---CvkaXiTK---A--
+[25/Nov/2026:14:23:04 +0000] 17956165847.542368 172.19.0.1 36712 172.19.0.3 8080
+---CvkaXiTK---B--
+GET /api/v1/orders/5006 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---CvkaXiTK---D--
+
+---CvkaXiTK---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---CvkaXiTK---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5006"] [unique_id "17956165847.542368"] [ref "o0,14o0,9o9,5v39,14"]
+
+---CvkaXiTK---I--
+
+---CvkaXiTK---J--
+
+---CvkaXiTK---Z--
+
+---FNISmZDu---A--
+[25/Nov/2026:14:23:04 +0000] 179561658415.179213 172.19.0.1 36712 172.19.0.3 8080
+---FNISmZDu---B--
+GET /api/v1/orders/5007 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---FNISmZDu---D--
+
+---FNISmZDu---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---FNISmZDu---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5007"] [unique_id "179561658415.179213"] [ref "o0,14o0,9o9,5v39,14"]
+
+---FNISmZDu---I--
+
+---FNISmZDu---J--
+
+---FNISmZDu---Z--
+
+---88wVWk8F---A--
+[25/Nov/2026:14:23:04 +0000] 179561658473.581569 172.19.0.1 36712 172.19.0.3 8080
+---88wVWk8F---B--
+GET /api/v1/orders/5008 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---88wVWk8F---D--
+
+---88wVWk8F---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---88wVWk8F---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5008"] [unique_id "179561658473.581569"] [ref "o0,14o0,9o9,5v39,14"]
+
+---88wVWk8F---I--
+
+---88wVWk8F---J--
+
+---88wVWk8F---Z--
+
+---NTM8LXTX---A--
+[25/Nov/2026:14:23:04 +0000] 179561658494.890390 172.19.0.1 36712 172.19.0.3 8080
+---NTM8LXTX---B--
+GET /api/v1/orders/5009 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---NTM8LXTX---D--
+
+---NTM8LXTX---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---NTM8LXTX---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5009"] [unique_id "179561658494.890390"] [ref "o0,14o0,9o9,5v39,14"]
+
+---NTM8LXTX---I--
+
+---NTM8LXTX---J--
+
+---NTM8LXTX---Z--
+
+---QC5xsYF8---A--
+[25/Nov/2026:14:23:04 +0000] 179561658482.804755 172.19.0.1 36712 172.19.0.3 8080
+---QC5xsYF8---B--
+GET /api/v1/orders/5010 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---QC5xsYF8---D--
+
+---QC5xsYF8---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---QC5xsYF8---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5010"] [unique_id "179561658482.804755"] [ref "o0,14o0,9o9,5v39,14"]
+
+---QC5xsYF8---I--
+
+---QC5xsYF8---J--
+
+---QC5xsYF8---Z--
+
+---tXYe4lYA---A--
+[25/Nov/2026:14:23:04 +0000] 179561658434.085763 172.19.0.1 36712 172.19.0.3 8080
+---tXYe4lYA---B--
+GET /api/v1/orders/5011 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---tXYe4lYA---D--
+
+---tXYe4lYA---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---tXYe4lYA---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5011"] [unique_id "179561658434.085763"] [ref "o0,14o0,9o9,5v39,14"]
+
+---tXYe4lYA---I--
+
+---tXYe4lYA---J--
+
+---tXYe4lYA---Z--
+
+---rSgNCmaX---A--
+[25/Nov/2026:14:23:04 +0000] 179561658434.943440 172.19.0.1 36712 172.19.0.3 8080
+---rSgNCmaX---B--
+GET /api/v1/orders/5012 HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---rSgNCmaX---D--
+
+---rSgNCmaX---F--
+HTTP/1.1 404
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---rSgNCmaX---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/orders/5012"] [unique_id "179561658434.943440"] [ref "o0,14o0,9o9,5v39,14"]
+
+---rSgNCmaX---I--
+
+---rSgNCmaX---J--
+
+---rSgNCmaX---Z--
+
+---FudaR55r---A--
+[25/Nov/2026:14:23:04 +0000] 179561658460.474377 172.19.0.1 36712 172.19.0.3 8080
+---FudaR55r---B--
+PATCH /api/v1/users/102/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 31
+
+---FudaR55r---D--
+
+---FudaR55r---F--
+HTTP/1.1 403
+
+---FudaR55r---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/102/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658460.474377"] [ref "o0,25v6,25"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=102 subject=101 uri=/api/v1/users/102/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658460.474377"] [ref ""]
+
+---FudaR55r---I--
+
+---FudaR55r---J--
+
+---FudaR55r---Z--
+
+---HBm7h2Db---A--
+[25/Nov/2026:14:23:04 +0000] 179561658443.282180 172.19.0.1 36712 172.19.0.3 8080
+---HBm7h2Db---B--
+POST /api/v1/register HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 137
+
+---HBm7h2Db---D--
+
+---HBm7h2Db---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---HBm7h2Db---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---HBm7h2Db---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/register"] [unique_id "179561658443.282180"] [ref "o0,14o0,9o9,5v37,14"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.is_admin' (Value: `json.is_admin' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/register"] [unique_id "179561658443.282180"] [ref "o0,4v0,4o0,16v5,16t:urlDecodeUnio0,12v0,12o0,9v0,9o0,13v0,13"]
+
+---HBm7h2Db---I--
+
+---HBm7h2Db---J--
+
+---HBm7h2Db---Z--
+
+---XlDcUjmL---A--
+[25/Nov/2026:14:23:04 +0000] 179561658442.256098 172.19.0.1 36712 172.19.0.3 8080
+---XlDcUjmL---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 64
+
+---XlDcUjmL---D--
+
+---XlDcUjmL---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---XlDcUjmL---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---XlDcUjmL---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658442.256098"] [ref "o0,25v6,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658442.256098"] [ref "o0,14o0,9o9,5v47,14"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.balance' (Value: `json.balance' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.balance"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658442.256098"] [ref "o0,5v0,5o0,25v6,25t:urlDecodeUnio0,13v0,13o0,12v0,12"]
+
+---XlDcUjmL---I--
+
+---XlDcUjmL---J--
+
+---XlDcUjmL---Z--
+
+---BQgNDHsQ---A--
+[25/Nov/2026:14:23:04 +0000] 179561658427.957273 172.19.0.1 36712 172.19.0.3 8080
+---BQgNDHsQ---B--
+GET /api/v1/admin/users HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---BQgNDHsQ---D--
+
+---BQgNDHsQ---E--
+{"error":"forbidden"}\x0a
+
+---BQgNDHsQ---F--
+HTTP/1.1 403
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Access-Control-Max-Age: 3600
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: text/html
+Content-Length: 22
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Server: nginx
+Server: nginx
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: *
+
+---BQgNDHsQ---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/admin/users"] [unique_id "179561658427.957273"] [ref "o0,14o0,9o9,5v39,14"]
+
+---BQgNDHsQ---I--
+
+---BQgNDHsQ---J--
+
+---BQgNDHsQ---Z--
+
+---BWzbb2Sq---A--
+[25/Nov/2026:14:23:04 +0000] 179561658460.902667 172.19.0.1 36712 172.19.0.3 8080
+---BWzbb2Sq---B--
+GET /api/v1/products?q=%27%20UNION%20SELECT%20id,username,password,role%20FROM%20users-- HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---BWzbb2Sq---D--
+
+---BWzbb2Sq---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---BWzbb2Sq---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---BWzbb2Sq---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658460.902667"] [ref "o0,14o0,9o9,5v104,14"]
+ModSecurity: Warning. detected SQLi using libinjection. [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf"] [line "46"] [id "942100"] [rev ""] [msg "SQL Injection Attack Detected via libinjection"] [data "Matched Data: sUEnk found within ARGS:q: ' UNION SELECT id,username,password,role FROM users--"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-sqli"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-SQLI"] [tag "capec/1000/152/248/66"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658460.902667"] [ref "v23,53"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)[\"'`](?:[\s\x0b]*![\s\x0b]*[\"'<->`]|;?[\s\x0b]*(?:having|select|union\b[\s\x0b]*(?:all|(?:distin|sele)ct))\b[\s\x0b]*[^\s\x0b])|\b(?:(?:(?:c(?:onnection_id|urrent_user)|database|schema|user)[\s\ (306 characters omitted)' against variable `ARGS:q' (Value: `' UNION SELECT id,username,password,role FROM users--' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf"] [line "206"] [id "942190"] [rev ""] [msg "Detects SQL code execution and information gathering attempts"] [data "Matched Data: ' UNION SELECT i found within ARGS:q: ' UNION SELECT id,username,password,role FROM users"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-sqli"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-SQLI"] [tag "capec/1000/152/248/66"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658460.902667"] [ref "o0,16v23,53t:urlDecodeUni,t:removeCommentsChar"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)union.*?select.*?from' against variable `ARGS:q' (Value: `' UNION SELECT id,username,password,role FROM users--' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf"] [line "334"] [id "942270"] [rev ""] [msg "Looking for basic sql injection. Common attack string for mysql, oracle and others"] [data "Matched Data: UNION SELECT id,username,password,role FROM found within ARGS:q: ' UNION SELECT id,username,password,role FROM users--"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-sqli"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-SQLI"] [tag "capec/1000/152/248/66"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658460.902667"] [ref "o2,43v23,53t:urlDecodeUni"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)\b(?:(?:alter|(?:(?:cre|trunc|upd)at|renam)e|de(?:lete|sc)|(?:inser|selec)t|load)[\s\x0b]+(?:char|group_concat|load_file)\b[\s\x0b]*\(?|end[\s\x0b]*?\);)|[\s\x0b\(]load_file[\s\x0b]*?\(|[\"'`][\s\ (1260 characters omitted)' against variable `ARGS:q' (Value: `' UNION SELECT id,username,password,role FROM users--' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf"] [line "480"] [id "942360"] [rev ""] [msg "Detects concatenated basic SQL injection and SQLLFI attempts"] [data "Matched Data: ' UNION SELECT found within ARGS:q: ' UNION SELECT id,username,password,role FROM users--"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-sqli"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-SQLI"] [tag "capec/1000/152/248/66"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658460.902667"] [ref "o0,14v23,53t:urlDecodeUni"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Ge' with parameter `5' against variable `TX:BLOCKING_INBOUND_ANOMALY_SCORE' (Value: `23' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-949-BLOCKING-EVALUATION.conf"] [line "222"] [id "949110"] [rev ""] [msg "Inbound Anomaly Score Exceeded (Total Score: 23)"] [data ""] [severity "0"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "anomaly-evaluation"] [tag "OWASP_CRS"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658460.902667"] [ref ""]
+
+---BWzbb2Sq---I--
+
+---BWzbb2Sq---J--
+
+---BWzbb2Sq---Z--
+
+---DDxtF9Um---A--
+[25/Nov/2026:14:23:04 +0000] 17956165849.834461 172.19.0.1 36712 172.19.0.3 8080
+---DDxtF9Um---B--
+GET /api/v1/products?q=%3Cscript%3Ealert(document.cookie)%3C/script%3E HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---DDxtF9Um---D--
+
+---DDxtF9Um---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---DDxtF9Um---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---DDxtF9Um---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref "o0,14o0,9o9,5v86,14"]
+ModSecurity: Warning. detected XSS using libinjection. [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-941-APPLICATION-ATTACK-XSS.conf"] [line "83"] [id "941100"] [rev ""] [msg "XSS Attack Detected via libinjection"] [data "Matched Data: XSS data found within ARGS:q: <script>alert(document.cookie)</script>"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-xss"] [tag "xss-perf-disable"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-XSS"] [tag "capec/1000/152/242"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref "v23,39t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)<script[^>]*>[\s\S]*?' against variable `ARGS:q' (Value: `<script>alert(document.cookie)</script>' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-941-APPLICATION-ATTACK-XSS.conf"] [line "110"] [id "941110"] [rev ""] [msg "XSS Filter - Category 1: Script Tag Vector"] [data "Matched Data: <script> found within ARGS:q: <script>alert(document.cookie)</script>"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-xss"] [tag "xss-perf-disable"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-XSS"] [tag "capec/1000/152/242"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref "o0,8v23,39t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)<[^0-9<>A-Z_a-z]*(?:[^\s\x0b\"'<>]*:)?[^0-9<>A-Z_a-z]*[^0-9A-Z_a-z]*?(?:s[^0-9A-Z_a-z]*?(?:c[^0-9A-Z_a-z]*?r[^0-9A-Z_a-z]*?i[^0-9A-Z_a-z]*?p[^0-9A-Z_a-z]*?t|t[^0-9A-Z_a-z]*?y[^0-9A-Z_a-z]*?l[^0-9A (4396 characters omitted)' against variable `ARGS:q' (Value: `<script>alert(document.cookie)</script>' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-941-APPLICATION-ATTACK-XSS.conf"] [line "253"] [id "941160"] [rev ""] [msg "NoScript XSS InjectionChecker: HTML Injection"] [data "Matched Data: <script found within ARGS:q: <script>alert(document.cookie)</script>"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-xss"] [tag "xss-perf-disable"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-XSS"] [tag "capec/1000/152/242"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref "o0,7v23,39t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls"]
+ModSecurity: Warning. Matched "Operator `Pm' with parameter `document.cookie document.domain document.querySelector document.body.appendChild document.write .parentnode .innerhtml window.location -moz-binding <!-- <![cdata[' against variable `ARGS:q' (Value: `<script>alert(document.cookie)</script>' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-941-APPLICATION-ATTACK-XSS.conf"] [line "312"] [id "941180"] [rev ""] [msg "Node-Validator Deny List Keywords"] [data "Matched Data: document.cookie found within ARGS:q: <script>alert(document.cookie)</script>"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-nodejs"] [tag "attack-xss"] [tag "xss-perf-disable"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-XSS"] [tag "capec/1000/152/242"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref "o14,15v23,39t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)\b(?:eval|set(?:timeout|interval)|new[\s\x0b]+Function|a(?:lert|tob)|btoa|(?:promp|impor)t|con(?:firm|sole\.(?:log|dir))|fetch)[\s\x0b]*[\(\{]' against variable `ARGS:q' (Value: `<script>alert(document.cookie)</script>' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-941-APPLICATION-ATTACK-XSS.conf"] [line "826"] [id "941390"] [rev ""] [msg "Javascript method detected"] [data "Matched Data: alert( found within ARGS:q: <script>alert(document.cookie)</script>"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-nodejs"] [tag "attack-xss"] [tag "xss-perf-disable"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-XSS"] [tag "capec/1000/152/242"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref "o8,6v23,39t:htmlEntityDecode,t:jsDecode"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Ge' with parameter `5' against variable `TX:BLOCKING_INBOUND_ANOMALY_SCORE' (Value: `28' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-949-BLOCKING-EVALUATION.conf"] [line "222"] [id "949110"] [rev ""] [msg "Inbound Anomaly Score Exceeded (Total Score: 28)"] [data ""] [severity "0"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "anomaly-evaluation"] [tag "OWASP_CRS"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "17956165849.834461"] [ref ""]
+
+---DDxtF9Um---I--
+
+---DDxtF9Um---J--
+
+---DDxtF9Um---Z--
+
+---ufMNO7gZ---A--
+[25/Nov/2026:14:23:04 +0000] 179561658426.948631 172.19.0.1 36712 172.19.0.3 8080
+---ufMNO7gZ---B--
+GET /api/v1/products?q=../../../../etc/passwd HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---ufMNO7gZ---D--
+
+---ufMNO7gZ---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---ufMNO7gZ---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---ufMNO7gZ---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref "o0,14o0,9o9,5v61,14"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?i)(?:[/\x5c]|%(?:2(?:f|5(?:2f|5c|c(?:1%259c|0%25af))|%46)|5c|c(?:0%(?:[2aq]f|5c|9v)|1%(?:[19p]c|8s|af))|(?:bg%q|(?:e|f(?:8%8)?0%8)0%80%a)f|u(?:221[56]|EFC8|F025|002f)|%3(?:2(?:%(?:%6|4)6|F)|5%%63)|1 (394 characters omitted)' against variable `ARGS:q' (Value: `../../../../etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-930-APPLICATION-ATTACK-LFI.conf"] [line "35"] [id "930100"] [rev ""] [msg "Path Traversal Attack (/../) or (/.../)"] [data "Matched Data: /../ found within ARGS:q: ../../../../etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-lfi"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-LFI"] [tag "capec/1000/255/153/126"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref "o21,4v4,41o2,4v23,22"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^|[/;\x5c])\.{2,3}[/;\x5c]' against variable `REQUEST_URI_RAW' (Value: `/api/v1/products?q=../../../../etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-930-APPLICATION-ATTACK-LFI.conf"] [line "73"] [id "930110"] [rev ""] [msg "Path Traversal Attack (/../) or (/.../)"] [data "Matched Data: /../ found within REQUEST_URI_RAW: /api/v1/products?q=../../../../etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-lfi"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-LFI"] [tag "capec/1000/255/153/126"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref "o21,4v4,41"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^|[/;\x5c])\.{2,3}[/;\x5c]' against variable `ARGS:q' (Value: `../../../../etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-930-APPLICATION-ATTACK-LFI.conf"] [line "73"] [id "930110"] [rev ""] [msg "Path Traversal Attack (/../) or (/.../)"] [data "Matched Data: ../ found within ARGS:q: ../../../../etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-lfi"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-LFI"] [tag "capec/1000/255/153/126"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref "o0,3v23,22"]
+ModSecurity: Warning. Matched "Operator `PmFromFile' with parameter `lfi-os-files.data' against variable `ARGS:q' (Value: `../../../../etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-930-APPLICATION-ATTACK-LFI.conf"] [line "104"] [id "930120"] [rev ""] [msg "OS File Access Attempt"] [data "Matched Data: etc/passwd found within ARGS:q: ../../../../etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-lfi"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-LFI"] [tag "capec/1000/255/153/126"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref "o12,10v23,22t:utf8toUnicode,t:urlDecodeUni,t:normalizePathWin"]
+ModSecurity: Warning. Matched "Operator `PmFromFile' with parameter `unix-shell.data' against variable `ARGS:q' (Value: `../../../../etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-932-APPLICATION-ATTACK-RCE.conf"] [line "706"] [id "932160"] [rev ""] [msg "Remote Command Execution: Unix Shell Code Found"] [data "Matched Data: etc/passwd found within ARGS:q: ../../../../etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-shell"] [tag "platform-unix"] [tag "attack-rce"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-RCE"] [tag "capec/1000/152/248/88"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref "o12,10v23,22t:cmdLine,t:normalizePath"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Ge' with parameter `5' against variable `TX:BLOCKING_INBOUND_ANOMALY_SCORE' (Value: `33' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-949-BLOCKING-EVALUATION.conf"] [line "222"] [id "949110"] [rev ""] [msg "Inbound Anomaly Score Exceeded (Total Score: 33)"] [data ""] [severity "0"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "anomaly-evaluation"] [tag "OWASP_CRS"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658426.948631"] [ref ""]
+
+---ufMNO7gZ---I--
+
+---ufMNO7gZ---J--
+
+---ufMNO7gZ---Z--
+
+---VLuicm7l---A--
+[25/Nov/2026:14:23:04 +0000] 179561658437.813341 172.19.0.1 36712 172.19.0.3 8080
+---VLuicm7l---B--
+GET /api/v1/products?q=;cat%20/etc/passwd HTTP/1.1
+Host: 127.0.0.1:8080
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---VLuicm7l---D--
+
+---VLuicm7l---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---VLuicm7l---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---VLuicm7l---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658437.813341"] [ref "o0,14o0,9o9,5v57,14"]
+ModSecurity: Warning. Matched "Operator `PmFromFile' with parameter `lfi-os-files.data' against variable `ARGS:q' (Value: `;cat /etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-930-APPLICATION-ATTACK-LFI.conf"] [line "104"] [id "930120"] [rev ""] [msg "OS File Access Attempt"] [data "Matched Data: etc/passwd found within ARGS:q: ;cat /etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-lfi"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-LFI"] [tag "capec/1000/255/153/126"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658437.813341"] [ref "o6,10v23,16t:utf8toUnicode,t:urlDecodeUni,t:normalizePathWin"]
+ModSecurity: Warning. Matched "Operator `PmFromFile' with parameter `unix-shell.data' against variable `ARGS:q' (Value: `;cat /etc/passwd' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-932-APPLICATION-ATTACK-RCE.conf"] [line "706"] [id "932160"] [rev ""] [msg "Remote Command Execution: Unix Shell Code Found"] [data "Matched Data: etc/passwd found within ARGS:q:  cat/etc/passwd"] [severity "2"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-shell"] [tag "platform-unix"] [tag "attack-rce"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/ATTACK-RCE"] [tag "capec/1000/152/248/88"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658437.813341"] [ref "o5,10v23,16t:cmdLine,t:normalizePath"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Ge' with parameter `5' against variable `TX:BLOCKING_INBOUND_ANOMALY_SCORE' (Value: `13' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-949-BLOCKING-EVALUATION.conf"] [line "222"] [id "949110"] [rev ""] [msg "Inbound Anomaly Score Exceeded (Total Score: 13)"] [data ""] [severity "0"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "anomaly-evaluation"] [tag "OWASP_CRS"] [hostname "127.0.0.1"] [uri "/api/v1/products"] [unique_id "179561658437.813341"] [ref ""]
+
+---VLuicm7l---I--
+
+---VLuicm7l---J--
+
+---VLuicm7l---Z--
+
+---G4Mr6nhK---A--
+[25/Nov/2026:14:23:04 +0000] 179561658431.846160 172.19.0.1 36712 172.19.0.3 8080
+---G4Mr6nhK---B--
+GET /api/v1/users/%31%30%32/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---G4Mr6nhK---D--
+
+---G4Mr6nhK---F--
+HTTP/1.1 403
+
+---G4Mr6nhK---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/102/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658431.846160"] [ref "o0,25v4,31"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=102 subject=101 uri=/api/v1/users/102/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658431.846160"] [ref ""]
+
+---G4Mr6nhK---I--
+
+---G4Mr6nhK---J--
+
+---G4Mr6nhK---Z--
+
+---0dDFmfze---A--
+[25/Nov/2026:14:23:04 +0000] 179561658462.174856 172.19.0.1 36712 172.19.0.3 8080
+---0dDFmfze---B--
+GET //api/v1/users/102/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---0dDFmfze---D--
+
+---0dDFmfze---F--
+HTTP/1.1 403
+
+---0dDFmfze---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `//api/v1/users/102/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "//api/v1/users/102/profile"] [unique_id "179561658462.174856"] [ref "o1,25v4,26"]
+ModSecurity: Access denied with code 403 (phase 1). Matched "Operator `Eq' with parameter `0' against variable `TX:api_jwt_admin' (Value: `0' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "53"] [id "1006"] [rev ""] [msg "BOLA: object id does not match token subject"] [data "object=102 subject=101 uri=//api/v1/users/102/profile"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "//api/v1/users/102/profile"] [unique_id "179561658462.174856"] [ref ""]
+
+---0dDFmfze---I--
+
+---0dDFmfze---J--
+
+---0dDFmfze---Z--
+
+---IKzgRgFw---A--
+[25/Nov/2026:14:23:04 +0000] 179561658474.674761 172.19.0.1 36712 172.19.0.3 8080
+---IKzgRgFw---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 46
+
+---IKzgRgFw---D--
+
+---IKzgRgFw---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---IKzgRgFw---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---IKzgRgFw---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658474.674761"] [ref "o0,25v6,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658474.674761"] [ref "o0,14o0,9o9,5v47,14"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.is_admin' (Value: `json.is_admin' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658474.674761"] [ref "o0,5v0,5o0,25v6,25t:urlDecodeUnio0,13v0,13"]
+
+---IKzgRgFw---I--
+
+---IKzgRgFw---J--
+
+---IKzgRgFw---Z--
+
+---17dbtiMA---A--
+[25/Nov/2026:14:23:04 +0000] 179561658414.964241 172.19.0.1 36712 172.19.0.3 8080
+---17dbtiMA---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/json
+Content-Length: 57
+
+---17dbtiMA---D--
+
+---17dbtiMA---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---17dbtiMA---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---17dbtiMA---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658414.964241"] [ref "o0,25v6,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658414.964241"] [ref "o0,14o0,9o9,5v47,14"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.role' (Value: `json.role' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.role"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658414.964241"] [ref "o0,5v0,5o0,25v6,25t:urlDecodeUnio0,9v0,9o0,9v0,9"]
+
+---17dbtiMA---I--
+
+---17dbtiMA---J--
+
+---17dbtiMA---Z--
+
+---mhzqUf8U---A--
+[25/Nov/2026:14:23:04 +0000] 179561658413.463169 172.19.0.1 36712 172.19.0.3 8080
+---mhzqUf8U---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: text/plain
+Content-Length: 14
+
+---mhzqUf8U---D--
+
+---mhzqUf8U---F--
+HTTP/1.1 415
+
+---mhzqUf8U---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658413.463169"] [ref "o0,25v6,25"]
+ModSecurity: Access denied with code 415 (phase 1). Matched "Operator `Rx' with parameter `(?i)^application/(?:[a-z0-9.-]+\+)?json(?:\s*;.*)?$' against variable `REQUEST_HEADERS:Content-Type' (Value: `text/plain' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "132"] [id "1013"] [rev ""] [msg "Unsupported Content-Type for API write request"] [data "content-type=text/plain"] [severity "4"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "179561658413.463169"] [ref "o0,5v0,5o0,8v6,25v321,10"]
+
+---mhzqUf8U---I--
+
+---mhzqUf8U---J--
+
+---mhzqUf8U---Z--
+
+---IJh2weeE---A--
+[25/Nov/2026:14:23:04 +0000] 17956165842.984091 172.19.0.1 36712 172.19.0.3 8080
+---IJh2weeE---B--
+PATCH /api/v1/users/101/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc5NTYxNjU4MywiZXhwIjoxNzk1NjE4MzgzfQ.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+Content-Type: application/vnd.api+json
+Content-Length: 14
+
+---IJh2weeE---D--
+
+---IJh2weeE---E--
+<html>\x0d\x0a<head><title>403 Forbidden</title></head>\x0d\x0a<body>\x0d\x0a<center><h1>403 Forbidden</h1></center>\x0d\x0a<hr><center>nginx</center>\x0d\x0a</body>\x0d\x0a</html>\x0d\x0a
+
+---IJh2weeE---F--
+HTTP/1.1 403
+Server: nginx
+Server: nginx
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Content-Length: 146
+Content-Type: text/html
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: *
+
+---IJh2weeE---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/101/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "17956165842.984091"] [ref "o0,25v6,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "17956165842.984091"] [ref "o0,14o0,9o9,5v47,14"]
+ModSecurity: Access denied with code 403 (phase 2). Matched "Operator `Rx' with parameter `(?i)^json\.(?:role|is_?admin|admin|balance|id|iin|card_last4|permissions?|groups?)$' against variable `ARGS_NAMES:json.is_admin' (Value: `json.is_admin' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "95"] [id "1010"] [rev ""] [msg "Mass Assignment: privileged property in request body"] [data "property=ARGS_NAMES:json.is_admin"] [severity "2"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "modsecurity"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API3_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/101/profile"] [unique_id "17956165842.984091"] [ref "o0,5v0,5o0,25v6,25t:urlDecodeUnio0,13v0,13"]
+
+---IJh2weeE---I--
+
+---IJh2weeE---J--
+
+---IJh2weeE---Z--
+
+---yeuNI9IH---A--
+[25/Nov/2026:14:23:04 +0000] 179561658481.406623 172.19.0.1 36712 172.19.0.3 8080
+---yeuNI9IH---B--
+GET /api/v1/users/102/profile HTTP/1.1
+Host: 127.0.0.1:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTU2MTY1ODMsImV4cCI6MTc5NTYxODM4M30.XtAn_566SyT0o-jpVjQrOlTmxnI3pg370QVmUFAfYsM
+Accept-Encoding: identity
+User-Agent: python-urllib3/2.8.0
+
+---yeuNI9IH---D--
+
+---yeuNI9IH---F--
+HTTP/1.1 401
+Referrer-Policy: no-referrer
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+X-Frame-Options: DENY
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+Content-Type: application/json
+Content-Length: 25
+Date: Wed, 25 Nov 2026 14:23:04 GMT
+Server: nginx
+Server: nginx
+Access-Control-Allow-Headers: *
+
+---yeuNI9IH---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `/api/v1/users/[0-9]+/.*' against variable `REQUEST_URI' (Value: `/api/v1/users/102/profile' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf"] [line "19"] [id "1001"] [rev ""] [msg "Potential BOLA attempt detected (detection only)"] [data ""] [severity "5"] [ver ""] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "API_SECURITY"] [tag "OWASP_API1_2023"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658481.406623"] [ref "o0,25v4,25"]
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `(?:^([\d.]+|\[[\da-f:]+\]|[\da-f:]+)(:[\d]+)?$)' against variable `REQUEST_HEADERS:Host' (Value: `127.0.0.1:8080' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "756"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "127.0.0.1:8080"] [severity "4"] [ver "OWASP_CRS/4.30.0"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "OWASP_CRS/PROTOCOL-ENFORCEMENT"] [tag "capec/1000/210/272"] [hostname "127.0.0.1"] [uri "/api/v1/users/102/profile"] [unique_id "179561658481.406623"] [ref "o0,14o0,9o9,5v45,14"]
+
+---yeuNI9IH---I--
+
+---yeuNI9IH---J--
+
+---yeuNI9IH---Z--
+

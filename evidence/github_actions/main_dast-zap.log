@@ -1,0 +1,447 @@
+﻿2026-11-26T11:16:58.8698627Z Current runner version: '2.338.2'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261111.635
+Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+Build Date: 2026-11-11T01:49:01Z
+Worker ID: {e4d8dec8-4ea3-45d2-ab54-43e5f234def8}
+Region: centralus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+26.04.1
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-26.04
+Version: 20261116.202.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: Actions
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'actions/setup-python@v7' (SHA:6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)
+Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Complete job name: DAST (OWASP ZAP API scan, OpenAPI)
+##[group]Run actions/checkout@v7
+with:
+  repository: is1am/waf-api-cicd-pr7
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-depth: 1
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  submodules: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+Syncing repository: is1am/waf-api-cicd-pr7
+##[group]Getting Git version info
+Working directory is '/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7'
+[command]/usr/bin/git version
+git version 2.56.1
+##[endgroup]
+Temporarily overriding HOME='/home/runner/work/_temp/2ff80525-4201-4a67-ae9a-2e871ab5b70c' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+Deleting the contents of '/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/
+[command]/usr/bin/git remote add origin https://github.com/is1am/waf-api-cicd-pr7
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path /home/runner/work/_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7e532c1b12c648ceb4a368a25cccc97bf982fc70:refs/remotes/origin/main
+From https://github.com/is1am/waf-api-cicd-pr7
+ * [new ref]         7e532c1b12c648ceb4a368a25cccc97bf982fc70 -> origin/main
+[command]/usr/bin/git branch --list --remote origin/main
+  origin/main
+[command]/usr/bin/git rev-parse refs/remotes/origin/main
+7e532c1b12c648ceb4a368a25cccc97bf982fc70
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Switched to a new branch 'main'
+branch 'main' set up to track 'origin/main'.
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+7e532c1b12c648ceb4a368a25cccc97bf982fc70
+##[group]Run actions/setup-python@v7
+with:
+  python-version: 3.12
+  check-latest: false
+  token: ***
+  mirror: https://raw.githubusercontent.com/actions/python-versions/main
+  update-environment: true
+  allow-prereleases: false
+  freethreaded: false
+##[endgroup]
+##[group]Installed versions
+Successfully set up CPython (3.12.16)
+##[endgroup]
+##[group]Run SHOP_SECRET_KEY=$(openssl rand -hex 32)
+SHOP_SECRET_KEY=$(openssl rand -hex 32)
+export SHOP_SECRET_KEY
+pip install -r requirements.txt
+nohup python -m src.shop.app > app.log 2>&1 &
+timeout 30 sh -c 'until curl -sf http://127.0.0.1:5000/api/v1/products >/dev/null; do sleep 1; done'
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+Collecting Flask==3.1.3 (from -r requirements.txt (line 1))
+  Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+Collecting Werkzeug==3.1.9 (from -r requirements.txt (line 2))
+  Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+Collecting Jinja2==3.1.6 (from -r requirements.txt (line 3))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting PyJWT==2.15.1 (from -r requirements.txt (line 4))
+  Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+Collecting blinker>=1.9.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click>=8.1.3 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous>=2.2.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting markupsafe>=2.1.1 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Downloading click-8.5.1-py3-none-any.whl (126 kB)
+Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Installing collected packages: PyJWT, markupsafe, itsdangerous, click, blinker, Werkzeug, Jinja2, Flask
+
+Successfully installed Flask-3.1.3 Jinja2-3.1.6 PyJWT-2.15.1 Werkzeug-3.1.9 blinker-1.9.0 click-8.5.1 itsdangerous-2.2.0 markupsafe-3.0.4
+##[group]Run chmod a+w .
+chmod a+w .
+docker run --rm --network host -v "$PWD:/zap/wrk:rw" zaproxy/zap-stable \
+  zap-api-scan.py -t /zap/wrk/openapi.yaml -f openapi -O http://127.0.0.1:5000 \
+  -c zap-api-rules.tsv -r zap-api.html -J zap-api.json -I
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+Unable to find image 'zaproxy/zap-stable:latest' locally
+latest: Pulling from zaproxy/zap-stable
+3c5439d0ae62: Pulling fs layer
+41b28138a536: Pulling fs layer
+d76c7e4d4eed: Pulling fs layer
+7829b3d60f05: Pulling fs layer
+c212a4ce8543: Pulling fs layer
+39623f43dfaa: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+f26fc71eb93e: Pulling fs layer
+0a41632055c2: Pulling fs layer
+1b1d49a38a01: Pulling fs layer
+dee331ead96d: Pulling fs layer
+41737c9a08d0: Pulling fs layer
+beff637b166d: Pulling fs layer
+6173fb42a391: Pulling fs layer
+cd5f7553f81c: Pulling fs layer
+5ea75c5c7143: Pulling fs layer
+68fc7dda2d84: Pulling fs layer
+e5ca1437e0c7: Pulling fs layer
+af3152b6af93: Pulling fs layer
+f63a8bdddb02: Pulling fs layer
+4f4fb700ef54: Already exists
+c212a4ce8543: Download complete
+d76c7e4d4eed: Download complete
+39623f43dfaa: Download complete
+beff637b166d: Download complete
+7829b3d60f05: Download complete
+f26fc71eb93e: Download complete
+0a41632055c2: Download complete
+41737c9a08d0: Download complete
+3c5439d0ae62: Download complete
+1b1d49a38a01: Download complete
+41b28138a536: Download complete
+dee331ead96d: Download complete
+f63a8bdddb02: Download complete
+68fc7dda2d84: Download complete
+5ea75c5c7143: Download complete
+e5ca1437e0c7: Download complete
+af3152b6af93: Download complete
+3c5439d0ae62: Pull complete
+6173fb42a391: Download complete
+cd5f7553f81c: Download complete
+cd5f7553f81c: Pull complete
+1b1d49a38a01: Pull complete
+beff637b166d: Pull complete
+68fc7dda2d84: Pull complete
+4f4fb700ef54: Pull complete
+d76c7e4d4eed: Pull complete
+0a41632055c2: Pull complete
+6173fb42a391: Pull complete
+dee331ead96d: Pull complete
+41737c9a08d0: Pull complete
+41b28138a536: Pull complete
+af3152b6af93: Pull complete
+f63a8bdddb02: Pull complete
+5ea75c5c7143: Pull complete
+e5ca1437e0c7: Pull complete
+7829b3d60f05: Pull complete
+c212a4ce8543: Pull complete
+39623f43dfaa: Pull complete
+f26fc71eb93e: Pull complete
+Digest: sha256:9624669db72f54d86c4b46a7064518bd9bf79d8c61a4c31befa9923489f328af
+Status: Downloaded newer image for zaproxy/zap-stable:latest
+2026-11-26 11:17:42,920 Using override, new target: http://127.0.0.1:5000
+2026-11-26 11:17:42,920 Number of Imported URLs: 13
+Total of 203 URLs
+PASS: Directory Browsing [0]
+PASS: Vulnerable JS Library (Powered by Retire.js) [10003]
+PASS: Swagger UI Secret & Vulnerability Detector [100043]
+PASS: In Page Banner Information Leak [10009]
+PASS: Cookie No HttpOnly Flag [10010]
+PASS: Cookie Without Secure Flag [10011]
+PASS: Re-examine Cache-control Directives [10015]
+PASS: Cross-Domain JavaScript Source File Inclusion [10017]
+PASS: Content-Type Header Missing [10019]
+PASS: Anti-clickjacking Header [10020]
+PASS: X-Content-Type-Options Header Missing [10021]
+PASS: Information Disclosure - Debug Error Messages [10023]
+PASS: Information Disclosure - Sensitive Information in URL [10024]
+PASS: Information Disclosure - Sensitive Information in HTTP Referrer Header [10025]
+PASS: HTTP Parameter Override [10026]
+PASS: Information Disclosure - Suspicious Comments [10027]
+PASS: Off-site Redirect [10028]
+PASS: Cookie Poisoning [10029]
+PASS: User Controllable Charset [10030]
+PASS: User Controllable HTML Element Attribute (Potential XSS) [10031]
+PASS: Viewstate [10032]
+PASS: Directory Browsing [10033]
+PASS: Heartbleed OpenSSL Vulnerability (Indicative) [10034]
+PASS: Strict-Transport-Security Header [10035]
+PASS: Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s) [10037]
+PASS: Content Security Policy (CSP) Header Not Set [10038]
+PASS: X-Backend-Server Header Information Leak [10039]
+PASS: Secure Pages Include Mixed Content [10040]
+PASS: HTTP to HTTPS Insecure Transition in Form Post [10041]
+PASS: HTTPS to HTTP Insecure Transition in Form Post [10042]
+PASS: User Controllable JavaScript Event (XSS) [10043]
+PASS: Big Redirect Detected (Potential Sensitive Information Leak) [10044]
+PASS: Source Code Disclosure - /WEB-INF Folder [10045]
+PASS: HTTPS Content Available via HTTP [10047]
+PASS: Remote Code Execution - Shell Shock [10048]
+PASS: Content Cacheability [10049]
+PASS: Retrieved from Cache [10050]
+PASS: X-ChromeLogger-Data (XCOLD) Header Information Leak [10052]
+PASS: Cookie without SameSite Attribute [10054]
+PASS: CSP [10055]
+PASS: X-Debug-Token Information Leak [10056]
+PASS: Username Hash Found [10057]
+PASS: GET for POST [10058]
+PASS: X-AspNet-Version Response Header [10061]
+PASS: PII Disclosure [10062]
+PASS: Permissions Policy Header Not Set [10063]
+PASS: Timestamp Disclosure [10096]
+PASS: Hash Disclosure [10097]
+PASS: Cross-Domain Misconfiguration [10098]
+PASS: Source Code Disclosure [10099]
+PASS: User Agent Fuzzer [10104]
+PASS: Weak Authentication Method [10105]
+PASS: HTTP Only Site [10106]
+PASS: Reverse Tabnabbing [10108]
+PASS: Modern Web Application [10109]
+PASS: Dangerous JS Functions [10110]
+PASS: Authentication Request Identified [10111]
+PASS: Session Management Response Identified [10112]
+PASS: Verification Request Identified [10113]
+PASS: Script Served From Malicious Domain (polyfill) [10115]
+PASS: ZAP is Out of Date [10116]
+PASS: Absence of Anti-CSRF Tokens [10202]
+PASS: Private IP Disclosure [2]
+PASS: Heartbleed OpenSSL Vulnerability [20015]
+PASS: Source Code Disclosure - CVE-2012-1823 [20017]
+PASS: Remote Code Execution - CVE-2012-1823 [20018]
+PASS: External Redirect [20019]
+PASS: Server Side Technology Version with Known Vulnerabilities [20020]
+PASS: Session ID in URL Rewrite [3]
+PASS: Buffer Overflow [30001]
+PASS: Format String Error [30002]
+PASS: CRLF Injection [40003]
+PASS: Parameter Tampering [40008]
+PASS: Server Side Include [40009]
+PASS: Cross Site Scripting (Reflected) [40012]
+PASS: Cross Site Scripting (Persistent) [40014]
+PASS: Cross Site Scripting (Persistent) - Prime [40016]
+PASS: Cross Site Scripting (Persistent) - Spider [40017]
+PASS: SQL Injection [40018]
+PASS: SQL Injection - MySQL (Time Based) [40019]
+PASS: SQL Injection - Hypersonic SQL (Time Based) [40020]
+PASS: SQL Injection - Oracle (Time Based) [40021]
+PASS: SQL Injection - PostgreSQL (Time Based) [40022]
+PASS: Cross Site Scripting (DOM Based) [40026]
+PASS: SQL Injection - MsSQL (Time Based) [40027]
+PASS: ELMAH Information Leak [40028]
+PASS: Trace.axd Information Leak [40029]
+PASS: .htaccess Information Leak [40032]
+PASS: .env Information Leak [40034]
+PASS: Hidden File Finder [40035]
+PASS: Spring Actuator Information Leak [40042]
+PASS: Log4Shell [40043]
+PASS: Exponential Entity Expansion (Billion Laughs Attack) [40044]
+PASS: Spring4Shell [40045]
+PASS: Remote Code Execution (React2Shell) [40048]
+PASS: Script Active Scan Rules [50000]
+PASS: Script Passive Scan Rules [50001]
+PASS: Remote File Inclusion [7]
+PASS: Insecure JSF ViewState [90001]
+PASS: Java Serialization Object [90002]
+PASS: Sub Resource Integrity Attribute Missing [90003]
+PASS: Insufficient Site Isolation Against Spectre Vulnerability [90004]
+PASS: Charset Mismatch [90011]
+PASS: XSLT Injection [90017]
+PASS: Server Side Code Injection [90019]
+PASS: Remote OS Command Injection [90020]
+PASS: XPath Injection [90021]
+PASS: Application Error Disclosure [90022]
+PASS: XML External Entity Attack [90023]
+PASS: Generic Padding Oracle [90024]
+PASS: SOAP Action Spoofing [90026]
+PASS: SOAP XML Injection [90029]
+PASS: WSDL File Detection [90030]
+PASS: Loosely Scoped Cookie [90033]
+PASS: Cloud Metadata Potentially Exposed [90034]
+PASS: Server Side Template Injection [90035]
+PASS: Server Side Template Injection (Blind) [90036]
+PASS: Remote OS Command Injection (Time Based) [90037]
+WARN-NEW: Server Leaks Version Information via "Server" HTTP Response Header Field [10036] x 7 
+	http://127.0.0.1:5000/api/v1/users/101/profile (401 UNAUTHORIZED)
+	http://127.0.0.1:5000/api/v1/products?q=USB (200 OK)
+	http://127.0.0.1:5000/api/v1/register (201 CREATED)
+	http://127.0.0.1:5000/api/v1/login (200 OK)
+	http://127.0.0.1:5000/api/v1/users/101/profile (401 UNAUTHORIZED)
+WARN-NEW: Path Traversal [6] x 1 
+	http://127.0.0.1:5000/api/v1/register (201 CREATED)
+FAIL-NEW: 0	FAIL-INPROG: 0	WARN-NEW: 2	WARN-INPROG: 0	INFO: 0	IGNORE: 0	PASS: 118
+##[group]Run actions/upload-artifact@v7
+with:
+  name: zap-api-report
+  path: zap-api.*
+  if-no-files-found: warn
+  compression-level: 6
+  overwrite: false
+  include-hidden-files: false
+  archive: true
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+With the provided path, there will be 2 files uploaded
+Artifact name is valid!
+Root directory input is valid!
+Uploading artifact: zap-api-report.zip
+Beginning upload of artifact content to blob storage
+Uploaded bytes 32390
+Finished uploading artifact content to blob storage!
+SHA256 digest of uploaded artifact is 16fa849b8fad62ade66147dd096ff080cc61191dce236456087894e8ee88b696
+Finalizing artifact upload
+Artifact zap-api-report successfully finalized. Artifact ID 15110574172
+Artifact zap-api-report has been successfully uploaded! Final size is 32390 bytes. Artifact ID is 15110574172
+Artifact download URL: https://github.com/is1am/waf-api-cicd-pr7/actions/runs/45809057618/artifacts/15110574172
+Post job cleanup.
+Post job cleanup.
+[command]/usr/bin/git version
+git version 2.56.1
+Temporarily overriding HOME='/home/runner/work/_temp/c21811fc-80ed-46db-8f25-64b49d893cf0' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path
+includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path
+/home/runner/work/_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-2af3ee29\-f08e\-40b2\-b10b\-20d0c20f2499\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path
+/home/runner/work/_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-2af3ee29\-f08e\-40b2\-b10b\-20d0c20f2499\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-2af3ee29\-f08e\-40b2\-b10b\-20d0c20f2499\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-2af3ee29\-f08e\-40b2\-b10b\-20d0c20f2499\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Removing credentials config '/home/runner/work/_temp/git-credentials-2af3ee29-f08e-40b2-b10b-20d0c20f2499.config'
+Cleaning up orphan processes
+Terminate orphan process: pid (2228) (python)

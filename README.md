@@ -11,6 +11,11 @@
 | `v1.1-waf` | + правила WAF и задание `waf-regression` | падает: WAF отражает 20/21 атак, перебор заказов проходит |
 | `v2-fixed` | проверка владельца объекта, схемы запросов | проходит |
 
+Прогоны в GitHub Actions: https://github.com/is1am/waf-api-cicd-pr7/actions —
+`main` (исправленная версия) проходит все задания; ветка `demo/v1.1-waf` (уязвимая версия,
+запуск вручную) останавливается на Semgrep, Bandit, тестах и WAF regression.
+Журналы ключевых заданий сохранены в `evidence/github_actions/`.
+
 ## Запуск (Ubuntu / WSL, root)
 
 ```bash

@@ -1,0 +1,480 @@
+﻿2026-11-26T11:16:37.4219472Z Current runner version: '2.338.2'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261111.635
+Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+Build Date: 2026-11-11T01:49:01Z
+Worker ID: {c10b6a08-2b15-42ab-aad6-91afbb2d87b4}
+Region: westcentralus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+26.04.1
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-26.04
+Version: 20261116.202.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: Actions
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'actions/setup-python@v7' (SHA:6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)
+Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Complete job name: WAF regression (ModSecurity + CRS + API rules)
+##[group]Run actions/checkout@v7
+with:
+  repository: is1am/waf-api-cicd-pr7
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-depth: 1
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  submodules: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+Syncing repository: is1am/waf-api-cicd-pr7
+##[group]Getting Git version info
+Working directory is '/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7'
+[command]/usr/bin/git version
+git version 2.56.1
+##[endgroup]
+Temporarily overriding HOME='/home/runner/work/_temp/14a7137b-9a86-47ef-895c-c096753801e8' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+Deleting the contents of '/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/
+[command]/usr/bin/git remote add origin https://github.com/is1am/waf-api-cicd-pr7
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path /home/runner/work/_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7e532c1b12c648ceb4a368a25cccc97bf982fc70:refs/remotes/origin/main
+From https://github.com/is1am/waf-api-cicd-pr7
+ * [new ref]         7e532c1b12c648ceb4a368a25cccc97bf982fc70 -> origin/main
+[command]/usr/bin/git branch --list --remote origin/main
+  origin/main
+[command]/usr/bin/git rev-parse refs/remotes/origin/main
+7e532c1b12c648ceb4a368a25cccc97bf982fc70
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Switched to a new branch 'main'
+branch 'main' set up to track 'origin/main'.
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+7e532c1b12c648ceb4a368a25cccc97bf982fc70
+##[group]Run actions/setup-python@v7
+with:
+  python-version: 3.12
+  check-latest: false
+  token: ***
+  mirror: https://raw.githubusercontent.com/actions/python-versions/main
+  update-environment: true
+  allow-prereleases: false
+  freethreaded: false
+##[endgroup]
+##[group]Installed versions
+Successfully set up CPython (3.12.16)
+##[endgroup]
+##[group]Run pip install -r requirements-dev.txt
+pip install -r requirements-dev.txt
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 1))
+  Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+Collecting requests==2.34.2 (from -r requirements-dev.txt (line 2))
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting packaging>=20 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading packaging-26.4-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting charset_normalizer<4,>=2 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading charset_normalizer-3.5.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (43 kB)
+Collecting idna<4,>=2.5 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading certifi-2026.11.20-py3-none-any.whl.metadata (2.5 kB)
+Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (257 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading certifi-2026.11.20-py3-none-any.whl (127 kB)
+Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Downloading packaging-26.4-py3-none-any.whl (140 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 38.4 MB/s  0:00:00
+Installing collected packages: urllib3, pygments, pluggy, packaging, iniconfig, idna, charset_normalizer, certifi, requests, pytest
+
+Successfully installed certifi-2026.11.20 charset_normalizer-3.5.3 idna-3.20 iniconfig-2.3.1 packaging-26.4 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 requests-2.34.2 urllib3-2.8.0
+##[group]Run mkdir -p waf/logs && chmod 777 waf/logs
+mkdir -p waf/logs && chmod 777 waf/logs
+SHOP_SECRET_KEY=$(openssl rand -hex 32) docker compose -f docker-compose.waf.yml up -d --wait
+timeout 60 sh -c 'until curl -sf http://127.0.0.1:8080/api/v1/products >/dev/null; do sleep 2; done'
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+ Image owasp/modsecurity-crs:nginx Pulling 
+ Image python:3.12-slim Pulling 
+ 286d8c291daa Pulling fs layer 0B
+ 40748add9f4f Pulling fs layer 0B
+ 30cf67d7101c Pulling fs layer 0B
+ e3e428093f5e Pulling fs layer 0B
+ a8edfcd10ba9 Pulling fs layer 0B
+ 37fb86c2a767 Pulling fs layer 0B
+ b03b282e7952 Pulling fs layer 0B
+ 923835760010 Pulling fs layer 0B
+ cdaa8bfe7146 Pulling fs layer 0B
+ 73cf18751551 Pulling fs layer 0B
+ 9e3122d21327 Pulling fs layer 0B
+ f9991db00084 Pulling fs layer 0B
+ 6fd6c08cb48f Pulling fs layer 0B
+ b0f3cece14a8 Pulling fs layer 0B
+ f560de99f995 Pulling fs layer 0B
+ 47191920ddc1 Pulling fs layer 0B
+ b6c2106d011c Pulling fs layer 0B
+ a9d73914e3bd Pulling fs layer 0B
+ 0940936c2591 Pulling fs layer 0B
+ d76de9b3bbc0 Pulling fs layer 0B
+ 743a8a3aaf39 Pulling fs layer 0B
+ afd1e1fd85e6 Pulling fs layer 0B
+ 5e63f53a35ab Pulling fs layer 0B
+ 446b12e10254 Pulling fs layer 0B
+ d234e3cdd3b0 Pulling fs layer 0B
+ 3efdf4f9303b Pulling fs layer 0B
+ 805eb967d127 Pulling fs layer 0B
+ b31e206ae13b Pulling fs layer 0B
+ 2bb5c11f4f63 Pulling fs layer 0B
+ 70df198a0ffa Pulling fs layer 0B
+ 286d8c291daa Download complete 0B
+ e3e428093f5e Downloading 1.049MB
+ 40748add9f4f Downloading 2.097MB
+ 37fb86c2a767 Downloading 9.437MB
+ cdaa8bfe7146 Download complete 0B
+ 9e3122d21327 Download complete 0B
+ a9d73914e3bd Download complete 0B
+ 923835760010 Download complete 0B
+ 73cf18751551 Download complete 0B
+ 47191920ddc1 Download complete 0B
+ 0940936c2591 Downloading 3.394kB
+ b0f3cece14a8 Download complete 0B
+ a8edfcd10ba9 Download complete 0B
+ f9991db00084 Download complete 0B
+ f560de99f995 Download complete 0B
+ b6c2106d011c Download complete 0B
+ 0940936c2591 Download complete 0B
+ 30cf67d7101c Download complete 0B
+ e3e428093f5e Downloading 9.437MB
+ 40748add9f4f Downloading 9.437MB
+ 743a8a3aaf39 Download complete 0B
+ 446b12e10254 Download complete 0B
+ 805eb967d127 Download complete 0B
+ 44136fa355b3 Already exists 0B
+ d234e3cdd3b0 Downloading 1.049MB
+ 3efdf4f9303b Download complete 0B
+ b31e206ae13b Download complete 0B
+ 70df198a0ffa Download complete 0B
+ d76de9b3bbc0 Download complete 0B
+ 37fb86c2a767 Downloading 17.83MB
+ 6fd6c08cb48f Download complete 0B
+ afd1e1fd85e6 Download complete 0B
+ 5e63f53a35ab Download complete 0B
+ 2bb5c11f4f63 Download complete 0B
+ b03b282e7952 Downloading 5.243MB
+ 37fb86c2a767 Downloading 29.86MB
+ d8111799d47e Download complete 0B
+ b03b282e7952 Downloading 16.78MB
+ d234e3cdd3b0 Downloading 11.53MB
+ 111e8faa2bc5 Download complete 0B
+ 21a336b2ac9e Download complete 0B
+ e3e428093f5e Download complete 0B
+ 40748add9f4f Downloading 22.02MB
+ 37fb86c2a767 Download complete 0B
+ 74988667ba40 Downloading 2.097MB
+ 40748add9f4f Download complete 0B
+ b03b282e7952 Download complete 0B
+ d234e3cdd3b0 Download complete 0B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 74988667ba40 Download complete 0B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Extracting 1B
+ 40748add9f4f Extracting 1B
+ 37fb86c2a767 Pull complete 0B
+ b03b282e7952 Extracting 1B
+ 30cf67d7101c Extracting 1B
+ 40748add9f4f Pull complete 0B
+ b03b282e7952 Extracting 1B
+ 30cf67d7101c Pull complete 0B
+ e3e428093f5e Extracting 1B
+ b03b282e7952 Extracting 1B
+ e3e428093f5e Extracting 1B
+ b03b282e7952 Extracting 1B
+ e3e428093f5e Extracting 1B
+ b03b282e7952 Extracting 1B
+ e3e428093f5e Extracting 1B
+ b03b282e7952 Extracting 1B
+ e3e428093f5e Extracting 1B
+ b03b282e7952 Extracting 1B
+ 286d8c291daa Pull complete 0B
+ e3e428093f5e Pull complete 0B
+ Image python:3.12-slim Pulled 
+ b03b282e7952 Pull complete 0B
+ a9d73914e3bd Pull complete 0B
+ 923835760010 Pull complete 0B
+ 73cf18751551 Pull complete 0B
+ b0f3cece14a8 Pull complete 0B
+ f9991db00084 Pull complete 0B
+ b6c2106d011c Pull complete 0B
+ 3efdf4f9303b Pull complete 0B
+ d76de9b3bbc0 Pull complete 0B
+ 6fd6c08cb48f Pull complete 0B
+ afd1e1fd85e6 Pull complete 0B
+ 5e63f53a35ab Pull complete 0B
+ 2bb5c11f4f63 Pull complete 0B
+ cdaa8bfe7146 Pull complete 0B
+ 9e3122d21327 Pull complete 0B
+ 47191920ddc1 Pull complete 0B
+ f560de99f995 Pull complete 0B
+ 0940936c2591 Pull complete 0B
+ 743a8a3aaf39 Pull complete 0B
+ 446b12e10254 Pull complete 0B
+ 805eb967d127 Pull complete 0B
+ b31e206ae13b Pull complete 0B
+ d234e3cdd3b0 Extracting 1B
+ d234e3cdd3b0 Extracting 1B
+ d234e3cdd3b0 Extracting 1B
+ d234e3cdd3b0 Extracting 1B
+ d234e3cdd3b0 Extracting 1B
+ a8edfcd10ba9 Pull complete 0B
+ 70df198a0ffa Pull complete 0B
+ d234e3cdd3b0 Pull complete 0B
+ Image owasp/modsecurity-crs:nginx Pulled 
+ Network waf-api-cicd-pr7_default Creating 
+ Network waf-api-cicd-pr7_default Created 
+ Container waf-api-cicd-pr7-api-1 Creating 
+ Container waf-api-cicd-pr7-api-1 Created 
+ Container waf-api-cicd-pr7-waf-1 Creating 
+ Container waf-api-cicd-pr7-waf-1 Created 
+ Container waf-api-cicd-pr7-api-1 Starting 
+ Container waf-api-cicd-pr7-api-1 Started 
+ Container waf-api-cicd-pr7-api-1 Waiting 
+ Container waf-api-cicd-pr7-api-1 Healthy 
+ Container waf-api-cicd-pr7-waf-1 Starting 
+ Container waf-api-cicd-pr7-waf-1 Started 
+ Container waf-api-cicd-pr7-api-1 Waiting 
+ Container waf-api-cicd-pr7-waf-1 Waiting 
+ Container waf-api-cicd-pr7-api-1 Healthy 
+ Container waf-api-cicd-pr7-waf-1 Healthy 
+##[group]Run python scripts/api_attack.py --base http://127.0.0.1:8080 --out waf-evidence --label ci --gate
+python scripts/api_attack.py --base http://127.0.0.1:8080 --out waf-evidence --label ci --gate
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+== ci: http://127.0.0.1:8080 (Host: -)
+  [LEGIT] Вход aliya (POST /api/v1/login)                            → 200  OK 
+  [LEGIT] Свой профиль GET /users/101/profile                        → 200  OK 
+  [LEGIT] Изменение своего телефона PATCH /users/101/profile         → 200  OK 
+  [LEGIT] Обычная регистрация POST /register                         → 201  OK 
+  [LEGIT] Поиск товаров GET /products?q=USB                          → 200  OK 
+  [LEGIT] Свой заказ GET /orders/5001                                → 200  OK 
+  [API1 ] Перебор ID: GET /users/100/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/102/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/103/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/104/profile                         → 403  отражена 
+  [API1 ] Перебор ID: GET /users/105/profile                         → 403  отражена 
+  [API1 ] Перебор заказов GET /orders/5001…5012                      → 200/403/404 отражена чужих заказов получено: 0
+  [API1 ] Изменение чужого e-mail PATCH /users/102/profile           → 403  отражена 
+  [API3 ] Регистрация с role=admin, is_admin=true, balance           → 403  отражена 
+  [API3 ] PATCH своего профиля с is_admin=1, balance                 → 403  отражена 
+  [API3 ]   → доступ aliya к GET /admin/users                        → 403  отражена 
+  [CRS  ] SQLi UNION в ?q=                                           → 403  отражена 
+  [CRS  ] XSS в ?q=                                                  → 403  отражена 
+  [CRS  ] Path traversal в ?q=                                       → 403  отражена 
+  [CRS  ] RCE (команда ОС) в ?q=                                     → 403  отражена 
+  [BYPASS] BOLA: ID в URL-кодировке /users/%31%30%32/profile          → 403  отражена 
+  [BYPASS] BOLA: двойной слэш //api/v1/users/102/profile              → 403  отражена 
+  [BYPASS] MA: ключ в \u-экранировании "\u0069s_admin"                → 403  отражена 
+  [BYPASS] MA: дублирующийся ключ role                                → 403  отражена 
+  [BYPASS] MA: тело JSON с Content-Type text/plain                    → 415  отражена 
+  [BYPASS] MA: Content-Type application/vnd.api+json                  → 403  отражена 
+  [BYPASS] BOLA: подделанный JWT (sub=102, role=admin) без подписи    → 401  отражена API проверяет подпись
+ИТОГ [ci]: атак успешно 0/21, легитимных заблокировано 0/6
+GATE PASSED
+##[group]Run mkdir -p waf-evidence
+mkdir -p waf-evidence
+# compose требует SHOP_SECRET_KEY при разборе файла; для чтения журналов значение не важно
+SHOP_SECRET_KEY=logs-only docker compose -f docker-compose.waf.yml logs waf > waf-evidence/waf-container.log 2>&1
+cp waf/logs/audit.log waf-evidence/modsec_audit.log || true
+grep -o 'id "10[0-9][0-9]"' waf-evidence/modsec_audit.log | sort | uniq -c || true
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+     16 id "1001"
+      8 id "1006"
+      5 id "1010"
+      1 id "1013"
+##[group]Run actions/upload-artifact@v7
+with:
+  name: waf-evidence
+  path: waf-evidence
+  if-no-files-found: warn
+  compression-level: 6
+  overwrite: false
+  include-hidden-files: false
+  archive: true
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+With the provided path, there will be 33 files uploaded
+Artifact name is valid!
+Root directory input is valid!
+Uploading artifact: waf-evidence.zip
+Beginning upload of artifact content to blob storage
+Uploaded bytes 23028
+Finished uploading artifact content to blob storage!
+SHA256 digest of uploaded artifact is 7a482f2e0932a496e8af3969b4bfe98f84f9d7660edfbf5510c0594ccc55b55b
+Finalizing artifact upload
+Artifact waf-evidence successfully finalized. Artifact ID 15110084719
+Artifact waf-evidence has been successfully uploaded! Final size is 23028 bytes. Artifact ID is 15110084719
+Artifact download URL: https://github.com/is1am/waf-api-cicd-pr7/actions/runs/45809057618/artifacts/15110084719
+Post job cleanup.
+Post job cleanup.
+[command]/usr/bin/git version
+git version 2.56.1
+Temporarily overriding HOME='/home/runner/work/_temp/a4ff8ba7-3436-48cc-b460-480e3880f952' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path
+includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path
+/home/runner/work/_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-6985e137\-4297\-40ed\-8868\-d5ba9da10cf3\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path
+/home/runner/work/_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-6985e137\-4297\-40ed\-8868\-d5ba9da10cf3\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-6985e137\-4297\-40ed\-8868\-d5ba9da10cf3\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-6985e137\-4297\-40ed\-8868\-d5ba9da10cf3\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Removing credentials config '/home/runner/work/_temp/git-credentials-6985e137-4297-40ed-8868-d5ba9da10cf3.config'
+Cleaning up orphan processes

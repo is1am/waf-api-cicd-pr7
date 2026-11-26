@@ -1,0 +1,433 @@
+﻿2026-11-26T11:16:50.9710106Z Current runner version: '2.338.2'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261111.635
+Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+Build Date: 2026-11-11T01:49:01Z
+Worker ID: {848bda57-4733-4ec0-9639-6966fcccf1aa}
+Region: westus3
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+26.04.1
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-26.04
+Version: 20261116.202.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: Actions
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'actions/setup-python@v7' (SHA:6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)
+Complete job name: Security regression tests
+##[group]Run actions/checkout@v7
+with:
+  repository: is1am/waf-api-cicd-pr7
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-depth: 1
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  submodules: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+Syncing repository: is1am/waf-api-cicd-pr7
+##[group]Getting Git version info
+Working directory is '/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7'
+[command]/usr/bin/git version
+git version 2.56.1
+##[endgroup]
+Temporarily overriding HOME='/home/runner/work/_temp/07ed798e-e7c2-4766-ab73-452b82640d1b' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+Deleting the contents of '/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/
+[command]/usr/bin/git remote add origin https://github.com/is1am/waf-api-cicd-pr7
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path /home/runner/work/_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +191744fcaa2cb780280264a71b1c2186f4c8314f:refs/remotes/origin/demo/v1.1-waf
+From https://github.com/is1am/waf-api-cicd-pr7
+ * [new ref]         191744fcaa2cb780280264a71b1c2186f4c8314f -> origin/demo/v1.1-waf
+[command]/usr/bin/git branch --list --remote origin/demo/v1.1-waf
+  origin/demo/v1.1-waf
+[command]/usr/bin/git rev-parse refs/remotes/origin/demo/v1.1-waf
+191744fcaa2cb780280264a71b1c2186f4c8314f
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force -B demo/v1.1-waf refs/remotes/origin/demo/v1.1-waf
+Switched to a new branch 'demo/v1.1-waf'
+branch 'demo/v1.1-waf' set up to track 'origin/demo/v1.1-waf'.
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+191744fcaa2cb780280264a71b1c2186f4c8314f
+##[group]Run actions/setup-python@v7
+with:
+  python-version: 3.12
+  check-latest: false
+  token: ***
+  mirror: https://raw.githubusercontent.com/actions/python-versions/main
+  update-environment: true
+  allow-prereleases: false
+  freethreaded: false
+##[endgroup]
+##[group]Installed versions
+Successfully set up CPython (3.12.16)
+##[endgroup]
+##[group]Run pip install -r requirements.txt -r requirements-dev.txt
+pip install -r requirements.txt -r requirements-dev.txt
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+Collecting Flask==3.1.3 (from -r requirements.txt (line 1))
+  Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+Collecting Werkzeug==3.1.9 (from -r requirements.txt (line 2))
+  Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+Collecting Jinja2==3.1.6 (from -r requirements.txt (line 3))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting PyJWT==2.15.1 (from -r requirements.txt (line 4))
+  Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 1))
+  Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+Collecting requests==2.34.2 (from -r requirements-dev.txt (line 2))
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting blinker>=1.9.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click>=8.1.3 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous>=2.2.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting markupsafe>=2.1.1 (from Flask==3.1.3->-r requirements.txt (line 1))
+  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting packaging>=20 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading packaging-26.4-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 1))
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting charset_normalizer<4,>=2 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading charset_normalizer-3.5.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (43 kB)
+Collecting idna<4,>=2.5 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests==2.34.2->-r requirements-dev.txt (line 2))
+  Downloading certifi-2026.11.20-py3-none-any.whl.metadata (2.5 kB)
+Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (257 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Downloading certifi-2026.11.20-py3-none-any.whl (127 kB)
+Downloading click-8.5.1-py3-none-any.whl (126 kB)
+Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading packaging-26.4-py3-none-any.whl (140 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 64.6 MB/s  0:00:00
+Installing collected packages: urllib3, PyJWT, pygments, pluggy, packaging, markupsafe, itsdangerous, iniconfig, idna, click, charset_normalizer, certifi, blinker, Werkzeug, requests, pytest, Jinja2, Flask
+
+Successfully installed Flask-3.1.3 Jinja2-3.1.6 PyJWT-2.15.1 Werkzeug-3.1.9 blinker-1.9.0 certifi-2026.11.20 charset_normalizer-3.5.3 click-8.5.1 idna-3.20 iniconfig-2.3.1 itsdangerous-2.2.0 markupsafe-3.0.4 packaging-26.4 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 requests-2.34.2 urllib3-2.8.0
+##[group]Run pytest -v tests
+pytest -v tests
+shell: /usr/bin/bash -e {0}
+env:
+  pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+  PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+  Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+  LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+##[endgroup]
+============================= test session starts ==============================
+platform linux -- Python 3.12.16, pytest-8.4.2, pluggy-1.7.0 -- /opt/hostedtoolcache/Python/3.12.16/x64/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+configfile: pytest.ini
+collecting ... collected 16 items
+
+tests/test_api_security.py::test_own_profile_is_available PASSED         [  6%]
+tests/test_api_security.py::test_profile_requires_token PASSED           [ 12%]
+tests/test_api_security.py::test_admin_can_read_any_profile PASSED       [ 18%]
+tests/test_api_security.py::test_regular_registration_works PASSED       [ 25%]
+tests/test_api_security.py::test_own_profile_update_works PASSED         [ 31%]
+tests/test_api_security.py::test_bola_foreign_profile_is_forbidden FAILED [ 37%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[100] FAILED [ 43%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[102] FAILED [ 50%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[103] FAILED [ 56%]
+tests/test_api_security.py::test_bola_enumeration_leaks_nothing[104] FAILED [ 62%]
+tests/test_api_security.py::test_bola_foreign_order_is_forbidden FAILED  [ 68%]
+tests/test_api_security.py::test_bola_foreign_profile_update_is_forbidden FAILED [ 75%]
+tests/test_api_security.py::test_mass_assignment_on_register_is_rejected FAILED [ 81%]
+tests/test_api_security.py::test_mass_assignment_on_profile_update_is_rejected FAILED [ 87%]
+tests/test_api_security.py::test_balance_cannot_be_changed_by_owner FAILED [ 93%]
+tests/test_api_security.py::test_response_does_not_expose_internal_fields FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_bola_foreign_profile_is_forbidden ____________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_bola_foreign_profile_is_forbidden(client):
+        r = client.get(f"/api/v1/users/{TIMUR}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:64: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[100] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 100
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[102] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 102
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[103] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 103
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+___________________ test_bola_enumeration_leaks_nothing[104] ___________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>, victim = 104
+
+    @pytest.mark.parametrize("victim", [100, 102, 103, 104])
+    def test_bola_enumeration_leaks_nothing(client, victim):
+        r = client.get(f"/api/v1/users/{victim}/profile", headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:71: AssertionError
+_____________________ test_bola_foreign_order_is_forbidden _____________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_bola_foreign_order_is_forbidden(client):
+        r = client.get("/api/v1/orders/5002", headers=login(client, "aliya"))   # заказ Тимура
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:76: AssertionError
+________________ test_bola_foreign_profile_update_is_forbidden _________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_bola_foreign_profile_update_is_forbidden(client):
+        r = client.patch(f"/api/v1/users/{TIMUR}/profile", json={"email": "attacker@evil.test"},
+                         headers=login(client, "aliya"))
+>       assert r.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:82: AssertionError
+_________________ test_mass_assignment_on_register_is_rejected _________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_mass_assignment_on_register_is_rejected(client):
+        r = client.post("/api/v1/register", json={"username": "mallory", "password": "Mallory#2026",
+                                                  "role": "admin", "is_admin": True, "balance": 999999})
+>       assert r.status_code == 400
+E       assert 201 == 400
+E        +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+
+tests/test_api_security.py:89: AssertionError
+______________ test_mass_assignment_on_profile_update_is_rejected ______________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_mass_assignment_on_profile_update_is_rejected(client):
+        h = login(client, "aliya")
+        r = client.patch(f"/api/v1/users/{ALIYA}/profile", json={"is_admin": 1, "role": "admin"}, headers=h)
+>       assert r.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+
+tests/test_api_security.py:96: AssertionError
+___________________ test_balance_cannot_be_changed_by_owner ____________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_balance_cannot_be_changed_by_owner(client):
+        h = login(client, "aliya")
+        client.patch(f"/api/v1/users/{ALIYA}/profile", json={"balance": 10_000_000}, headers=h)
+>       assert client.get(f"/api/v1/users/{ALIYA}/profile", headers=h).get_json().get("balance", 15000) == 15000
+E       AssertionError: assert 10000000 == 15000
+E        +  where 10000000 = <built-in method get of dict object at 0x76c14be16500>('balance', 15000)
+E        +    where <built-in method get of dict object at 0x76c14be16500> = {'balance': 10000000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...}.get
+E        +      where {'balance': 10000000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...} = get_json()
+E        +        where get_json = <WrapperTestResponse 258 bytes [200 OK]>.get_json
+E        +          where <WrapperTestResponse 258 bytes [200 OK]> = get('/api/v1/users/101/profile', headers={'Authorization': '***'})
+E        +            where get = <FlaskClient <Flask 'src.shop.app'>>.get
+
+tests/test_api_security.py:103: AssertionError
+________________ test_response_does_not_expose_internal_fields _________________
+
+client = <FlaskClient <Flask 'src.shop.app'>>
+
+    def test_response_does_not_expose_internal_fields(client):
+        r = client.get(f"/api/v1/users/{ALIYA}/profile", headers=login(client, "aliya"))
+        body = r.get_json()
+>       assert "password" not in body and "is_admin" not in body and "iin" not in body
+E       AssertionError: assert ('password' not in {'balance': 15000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...} and 'is_admin' not in {'balance': 15000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...})
+
+tests/test_api_security.py:109: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_api_security.py::test_bola_foreign_profile_is_forbidden - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[100] - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[102] - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[103] - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_bola_enumeration_leaks_nothing[104] - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_bola_foreign_order_is_forbidden - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_bola_foreign_profile_update_is_forbidden - assert 200 == 403
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_mass_assignment_on_register_is_rejected - assert 201 == 400
+ +  where 201 = <WrapperTestResponse streamed [201 CREATED]>.status_code
+FAILED tests/test_api_security.py::test_mass_assignment_on_profile_update_is_rejected - assert 200 == 400
+ +  where 200 = <WrapperTestResponse streamed [200 OK]>.status_code
+FAILED tests/test_api_security.py::test_balance_cannot_be_changed_by_owner - AssertionError: assert 10000000 == 15000
+ +  where 10000000 = <built-in method get of dict object at 0x76c14be16500>('balance', 15000)
+ +    where <built-in method get of dict object at 0x76c14be16500> = {'balance': 10000000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...}.get
+ +      where {'balance': 10000000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...} = get_json()
+ +        where get_json = <WrapperTestResponse 258 bytes [200 OK]>.get_json
+ +          where <WrapperTestResponse 258 bytes [200 OK]> = get('/api/v1/users/101/profile', headers={'Authorization': '***'})
+ +            where get = <FlaskClient <Flask 'src.shop.app'>>.get
+FAILED tests/test_api_security.py::test_response_does_not_expose_internal_fields - AssertionError: assert ('password' not in {'balance': 15000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...} and 'is_admin' not in {'balance': 15000, 'card_last4': '1111', 'email': 'aliya@lab.local', 'full_name': 'Алия Серикова', ...})
+========================= 11 failed, 5 passed in 2.82s =========================
+##[error]Process completed with exit code 1.
+Post job cleanup.
+[command]/usr/bin/git version
+git version 2.56.1
+Temporarily overriding HOME='/home/runner/work/_temp/cdf0d579-a4b0-4834-ae76-babca5a17fd9' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path
+includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path
+/home/runner/work/_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-f3f329a4\-30ac\-4dea\-98c7\-974972b694f2\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path
+/home/runner/work/_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/waf-api-cicd-pr7/waf-api-cicd-pr7/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-f3f329a4\-30ac\-4dea\-98c7\-974972b694f2\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-f3f329a4\-30ac\-4dea\-98c7\-974972b694f2\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-f3f329a4\-30ac\-4dea\-98c7\-974972b694f2\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Removing credentials config '/home/runner/work/_temp/git-credentials-f3f329a4-30ac-4dea-98c7-974972b694f2.config'
+Cleaning up orphan processes

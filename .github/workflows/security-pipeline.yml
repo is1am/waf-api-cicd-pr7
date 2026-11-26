@@ -216,7 +216,9 @@ jobs:
       - name: Журналы WAF
         if: always()
         run: |
-          docker compose -f docker-compose.waf.yml logs waf > waf-evidence/waf-container.log 2>&1
+          mkdir -p waf-evidence
+          # compose требует SHOP_SECRET_KEY при разборе файла; для чтения журналов значение не важно
+          SHOP_SECRET_KEY=logs-only docker compose -f docker-compose.waf.yml logs waf > waf-evidence/waf-container.log 2>&1
           cp waf/logs/audit.log waf-evidence/modsec_audit.log || true
           grep -o 'id "10[0-9][0-9]"' waf-evidence/modsec_audit.log | sort | uniq -c || true
       - uses: actions/upload-artifact@v7
